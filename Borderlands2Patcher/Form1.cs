@@ -19,9 +19,18 @@ namespace Borderlands2Patcher
         public Form1()
         {
             InitializeComponent();
+            string[] version = getTextFile(@"https://raw.githubusercontent.com/AnotherBugworm/Borderlands2Patcher/master/Patch/Version.txt");
+            label1.Text += version[0];
         }
 
-        //RegistryKey InstallLocation = Registry.LocalMachine.OpenSubKey("SOFTWARE\\Microsoft\\Windows\\CurrentVersion\\Uninstall\\Steam App 49520");
+        public string[] getTextFile(string url)
+        {
+            var file = GetFileViaHttp(url);
+            string str = Encoding.UTF8.GetString(file);
+            string[] content = str.Split(new[] { "\r\n" }, StringSplitOptions.RemoveEmptyEntries);
+            return content;
+        }
+        
         RegistryKey InstallLocation = RegistryKey.OpenBaseKey(RegistryHive.LocalMachine, RegistryView.Registry64).OpenSubKey("SOFTWARE\\Microsoft\\Windows\\CurrentVersion\\Uninstall\\Steam App 49520");
 
         private void button1_Click(object sender, EventArgs e)
@@ -93,14 +102,12 @@ namespace Borderlands2Patcher
         private void linkLabel2_LinkClicked(object sender, LinkLabelLinkClickedEventArgs e)
         {
             linkLabel2.LinkVisited = true;
-            System.Diagnostics.Process.Start("https://github.com/AnotherBugworm/Borderlands2Patcher/blob/master/Patch%20Notes.txt");
+            System.Diagnostics.Process.Start("https://github.com/AnotherBugworm/Borderlands2Patcher/blob/master/Patch/Patch%20Notes.txt");
         }
 
         private void button4_Click(object sender, EventArgs e)
         {
-            var file = GetFileViaHttp(@"https://raw.githubusercontent.com/AnotherBugworm/Borderlands2Patcher/master/Patch.txt");
-            string str = Encoding.UTF8.GetString(file);
-            string[] content = str.Split(new[] { "\r\n" }, StringSplitOptions.RemoveEmptyEntries);
+            string[] content = getTextFile(@"https://raw.githubusercontent.com/AnotherBugworm/Borderlands2Patcher/master/Patch/Patch.txt");
             try
             {
                 string path = InstallLocation.GetValue("InstallLocation") as string;
