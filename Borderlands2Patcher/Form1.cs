@@ -19,8 +19,23 @@ namespace Borderlands2Patcher
         public Form1()
         {
             InitializeComponent();
-            string[] version = getTextFile(@"https://raw.githubusercontent.com/AnotherBugworm/Borderlands2Patcher/master/Patch/Version.txt");
-            label1.Text += version[0];
+            try
+            {
+                string[] version = getTextFile(@"https://raw.githubusercontent.com/AnotherBugworm/Borderlands2Patcher/master/Patch/Version.txt");
+                label1.Text += version[0];
+            }
+            catch (System.Net.WebException)
+            {
+                label1.Text = "Can't get patch version.";
+            }
+        }
+
+        public byte[] GetFileViaHttp(string url)
+        {
+            using (WebClient client = new WebClient())
+            {
+                return client.DownloadData(url);
+            }
         }
 
         public string[] getTextFile(string url)
@@ -51,15 +66,23 @@ namespace Borderlands2Patcher
             }
             if (result == DialogResult.OK)
             {
+                PatchExe(openFileDialog1.FileName);
+            }
+        }
+
+        private void PatchExe(string file)
+        {
+            if (file.EndsWith("Borderlands2.exe") || file.EndsWith("borderlands2.exe"))
+            {
                 try
                 {
-                    File.Copy(openFileDialog1.FileName, openFileDialog1.FileName + ".bk", false);
+                    File.Copy(file, file + ".bk", false);
                 }
                 catch (IOException)
                 {
                     MessageBox.Show("You already have a backup. Skipping.");
                 }
-                var stream = new FileStream(openFileDialog1.FileName, FileMode.Open, FileAccess.ReadWrite);
+                var stream = new FileStream(file, FileMode.Open, FileAccess.ReadWrite);
                 stream.Position = 0x004F2590;
                 stream.WriteByte(0xff);
                 for (long i = 0x01B94B0C; i <= 0x01B94B10; i++)
@@ -70,6 +93,7 @@ namespace Borderlands2Patcher
                 stream.Close();
                 MessageBox.Show("Done!");
             }
+            else MessageBox.Show("Incorrect filename. I will only patch Borderlands2.exe or borderlands2.exe files");
         }
 
         private void button2_Click(object sender, EventArgs e)
@@ -106,7 +130,10 @@ namespace Borderlands2Patcher
 
         private void button4_Click(object sender, EventArgs e)
         {
-            string[] content = getTextFile(@"https://raw.githubusercontent.com/AnotherBugworm/Borderlands2Patcher/master/Patch/Patch.txt");
+            try
+            {
+                string[] content = getTextFile(@"https://raw.githubusercontent.com/AnotherBugworm/Borderlands2Patcher/master/Patch/Patch.txt");
+            
             try
             {
                 string path = InstallLocation.GetValue("InstallLocation") as string;
@@ -125,15 +152,30 @@ namespace Borderlands2Patcher
                     MessageBox.Show("Done!");
                 }
             }
-        }
-
-        public byte[] GetFileViaHttp(string url)
-        {
-            using (WebClient client = new WebClient())
+                }
+            catch (System.Net.WebException)
             {
-                return client.DownloadData(url);
+                MessageBox.Show("Looks like you doesn't have internet connetcion. I can't download patch for you, sorry. I will redirect you to patch location, download it manually and place it in ...\\Borderlands 2\\Binaries directory.");
+                System.Diagnostics.Process.Start("https://raw.githubusercontent.com/AnotherBugworm/Borderlands2Patcher/master/Patch/Patch.txt");
             }
         }
 
+        string[] files;
+
+        private void button1_DragDrop(object sender, DragEventArgs e)
+        {
+            if (files.Length == 1)
+            {
+                PatchExe(files[0]);
+            }
+            else MessageBox.Show("Too many files dropped. Drop me Borderlands2.exe only");
+        }
+
+        private void button1_DragEnter(object sender, DragEventArgs e)
+        {
+            e.Effect = DragDropEffects.Link;
+            files = (string[])e.Data.GetData(DataFormats.FileDrop);
+            
+        }
     }
 }

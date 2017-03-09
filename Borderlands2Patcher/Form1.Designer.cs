@@ -46,6 +46,7 @@
             // 
             // button1
             // 
+            this.button1.AllowDrop = true;
             this.button1.Location = new System.Drawing.Point(56, 34);
             this.button1.Name = "button1";
             this.button1.Size = new System.Drawing.Size(177, 23);
@@ -53,6 +54,8 @@
             this.button1.Text = "Patch Borderlands2.exe";
             this.button1.UseVisualStyleBackColor = true;
             this.button1.Click += new System.EventHandler(this.button1_Click);
+            this.button1.DragDrop += new System.Windows.Forms.DragEventHandler(this.button1_DragDrop);
+            this.button1.DragEnter += new System.Windows.Forms.DragEventHandler(this.button1_DragEnter);
             // 
             // button2
             // 
@@ -70,7 +73,7 @@
             this.textBox1.Name = "textBox1";
             this.textBox1.Size = new System.Drawing.Size(37, 20);
             this.textBox1.TabIndex = 2;
-            this.textBox1.Text = "F6";
+            this.textBox1.Text = "Tilde";
             // 
             // button3
             // 
