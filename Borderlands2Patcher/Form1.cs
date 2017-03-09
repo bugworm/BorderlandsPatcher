@@ -30,7 +30,7 @@ namespace Borderlands2Patcher
             string[] content = str.Split(new[] { "\r\n" }, StringSplitOptions.RemoveEmptyEntries);
             return content;
         }
-        
+
         RegistryKey InstallLocation = RegistryKey.OpenBaseKey(RegistryHive.LocalMachine, RegistryView.Registry64).OpenSubKey("SOFTWARE\\Microsoft\\Windows\\CurrentVersion\\Uninstall\\Steam App 49520");
 
         private void button1_Click(object sender, EventArgs e)
@@ -45,7 +45,6 @@ namespace Borderlands2Patcher
             catch (NullReferenceException)
             {
                 MessageBox.Show("Cannot detect your game path. Please select Borderlands2.exe file. It's usually on ...\\Steam(Library)\\steamapps\\common\\Borderlands 2\\Binaries\\Win32 directory.");
-                openFileDialog1.InitialDirectory = "C:\\Program Files (x86)\\Steam\\steamapps\\common\\Borderlands 2\\Binaries\\Win32";
                 openFileDialog1.Filter = "Executable files (.exe)|*.exe|All Files (*.*)|*.*";
                 openFileDialog1.FilterIndex = 1;
                 result = openFileDialog1.ShowDialog();
