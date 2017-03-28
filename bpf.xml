@@ -30,6 +30,7 @@
                 <IncludeRules context="FindObjects" />
                 <IncludeRules context="FindString" />
                 <IncludeRules context="FindOperators" />
+                <IncludeRules context="FindDescription" />
             </context>
             
             <context attribute="Normal Text" lineEndContext="#stay" name="FindCommentaries">
@@ -70,6 +71,12 @@
                 <keyword attribute="Operator" context="#stay" String="numbers" />
                 <DetectChar attribute="Normal Text" context="#pop" char="(" />
                 <AnyChar attribute="Keyword" context="FindAll" String=")," />
+            </context>
+            <context attribute="Normal Text" lineEndContext="#stay" name="FindDescription" >
+                <WordDetect attribute="Normal Text" context="description" String="Description" />
+            </context>
+            <context attribute="Keyword" lineEndContext="#pop" name="description" >
+                <RegExpr attribute="Keyword" context="#pop" String="\n" />
             </context>
             
         </contexts>
