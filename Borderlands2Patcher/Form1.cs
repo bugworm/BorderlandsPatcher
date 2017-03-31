@@ -10,6 +10,8 @@ using System.Net;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using LibGit2Sharp;
+using LibGit2Sharp.Handlers;
 
 namespace Borderlands2Patcher
 {
@@ -19,15 +21,7 @@ namespace Borderlands2Patcher
         public Form1()
         {
             InitializeComponent();
-            try
-            {
-                string[] version = getTextFile(@"https://raw.githubusercontent.com/AnotherBugworm/Borderlands2Patcher/master/Patch/Version.txt");
-                label1.Text += version[0];
-            }
-            catch (System.Net.WebException)
-            {
-                label1.Text = "Can't get patch version.";
-            }
+            updateAll();
         }
 
         public byte[] GetFileViaHttp(string url)
@@ -128,7 +122,7 @@ namespace Borderlands2Patcher
             System.Diagnostics.Process.Start("https://github.com/AnotherBugworm/Borderlands2Patcher/blob/master/Patch/Patch%20Notes.txt");
         }
 
-        private void button4_Click(object sender, EventArgs e)
+        /*private void button4_Click(object sender, EventArgs e)
         {
             try
             {
@@ -158,7 +152,7 @@ namespace Borderlands2Patcher
                 MessageBox.Show("Looks like you doesn't have internet connetcion. I can't download patch for you, sorry. I will redirect you to patch location, download it manually and place it in ...\\Borderlands 2\\Binaries directory.");
                 System.Diagnostics.Process.Start("https://raw.githubusercontent.com/AnotherBugworm/Borderlands2Patcher/master/Patch/Patch.txt");
             }
-        }
+        }*/
 
         string[] files;
 
@@ -176,6 +170,136 @@ namespace Borderlands2Patcher
             e.Effect = DragDropEffects.Link;
             files = (string[])e.Data.GetData(DataFormats.FileDrop);
             
+        }
+
+        string repoURL = "https://github.com/BL2CP/community-custom-weapons.git";
+        string repoPath = Environment.GetFolderPath(Environment.SpecialFolder.MyDocuments) + "\\Community Patch";
+
+        private void cloneRepo()
+        {
+            Repository.Clone(repoURL, repoPath);
+        }
+        
+        private void gitpull()
+        {
+            using (var repo = new Repository(repoPath))
+            {
+                LibGit2Sharp.PullOptions options = new LibGit2Sharp.PullOptions();
+                options.FetchOptions = new FetchOptions();
+                Signature signature = new Signature("BorderlandsPatcher", "bugworm@zoho.com", new DateTimeOffset(DateTime.Now));
+                repo.Network.Pull(signature, options);
+            }
+        }
+
+        private bool checkFiles(string filepath1, string filepath2)
+        {
+            using (var reader1 = new System.IO.FileStream(filepath1, System.IO.FileMode.Open, System.IO.FileAccess.Read))
+            {
+                using (var reader2 = new System.IO.FileStream(filepath2, System.IO.FileMode.Open, System.IO.FileAccess.Read))
+                {
+                    byte[] hash1;
+                    byte[] hash2;
+
+                    using (var md51 = new System.Security.Cryptography.MD5CryptoServiceProvider())
+                    {
+                        md51.ComputeHash(reader1);
+                        hash1 = md51.Hash;
+                    }
+
+                    using (var md52 = new System.Security.Cryptography.MD5CryptoServiceProvider())
+                    {
+                        md52.ComputeHash(reader2);
+                        hash2 = md52.Hash;
+                    }
+
+                    int j = 0;
+                    for (j = 0; j < hash1.Length; j++)
+                    {
+                        if (hash1[j] != hash2[j])
+                        {
+                            break;
+                        }
+                    }
+
+                    if (j == hash1.Length)
+                    {
+                        return true;
+                    }
+                    else
+                    {
+                        return false;
+                    }
+                }
+            }
+        }
+
+        List<string> paths = new List<string> { };
+
+        private void updateAll()
+        {
+            try
+            {
+                cloneRepo();
+            }
+            catch (NameConflictException)
+            {
+                gitpull();
+            }
+            string bindir = InstallLocation.GetValue("InstallLocation") as string;
+            bindir += "\\Binaries";
+            string[] files = Directory.GetFiles(bindir);
+            int i = 0;
+            using (var repo = new Repository(repoPath))
+            {
+                foreach (IndexEntry ie in repo.Index)
+                {
+                    string[] tmp = ie.Path.ToString().Split('\\');
+                    string name = tmp[tmp.Length - 1];
+                    string[] row = new string[4] { name, "None", "Not Installed", "Install" };
+                    paths.Add(ie.Path);
+                    if (ie.StageLevel == 0 && ie.Path.ToString().StartsWith("Borderlands 2"))
+                    {
+                        //for (int i = 0; i < files.Length; i++)
+                        foreach (string patch in files)
+                        {
+                            string[] tmp2 = patch.Split('\\');
+                            if (tmp2[tmp2.Length - 1].Equals(name))
+                            {
+                                if (checkFiles(repoPath + "\\" + ie.Path.ToString(), patch))
+                                {
+                                    row[2] = "Updated";
+                                    row[3] = "No actions";
+                                }
+                                else
+                                {
+                                    row[2] = "Out to Date";
+                                    row[3] = "Update";
+                                }
+                            }
+                        }
+                        dataGridView1.Rows.Add(row);
+                    }
+                }
+            }
+        }
+
+        private void dataGridView1_CellContentClick(object sender, DataGridViewCellEventArgs e)
+        {
+            var senderGrid = (DataGridView)sender;
+
+            if (senderGrid.Columns[e.ColumnIndex] is DataGridViewButtonColumn &&
+                e.RowIndex >= 0)
+            {
+                DataGridViewCell cell = dataGridView1.Rows[e.RowIndex].Cells[3];
+                if(cell.Value.ToString().Equals("Update") || cell.Value.ToString().Equals("Install"))
+                {
+                    string path = InstallLocation.GetValue("InstallLocation") as string;
+                    string[] tmp = paths[e.RowIndex].Split('\\');
+                    File.Copy(repoPath + "\\" + paths[e.RowIndex], path + "\\Binaries\\" + tmp[tmp.Length - 1],true);
+                    dataGridView1.Rows[e.RowIndex].Cells[2].Value = "Updated";
+                    dataGridView1.Rows[e.RowIndex].Cells[3].Value = "No actions";
+                }
+            }
         }
     }
 }
