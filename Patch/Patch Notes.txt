@@ -1,3 +1,162 @@
+v2.0
+==================Guns==================
+1.	Reverted the Emperor back from the Torrent and made it have a middle ground between both. (Now its a buffed Emperor with Increased Damage and faster fire rate, and also spawns with a scope, dont forget that.)
+2.	Made Dahl E-Tech ARs have the E-Tech buff as well.
+3.	Made All E-Tech AR have penetration.
+4.	Buffed Bandit Pistols. (Same as the Assault Rifle Buff, sacrificed magazine for other stats, so their reload speed, fire rate and damage for less magazine.)
+5.	Made Gemstone weapons have their own rarity, with the benefits of being one rarity higher (More gun damage, accuracy and magazine size)
+6.	Buffed the Torgue barrel for Assault Rifle to do more damage. (30% for some, and 40% for some).
+7.	Made Torgue Barrel for Assault Rifle to be considered Grenade damage.
+8.	Made the bearcat to be considered grenade damage.
+9.	Made the Carnage always spawn with 3 projectiles, and Vertical accessory gives it massive recoil reduction and a bit of damage increase (30%).
+10.	Made the Stalker have the Vladof barrel with increased projectile speed.
+11.	Made Bandit Plasma casters shoot like other plasma casters with the same status.
+12.	Slowed down the fire rate of Bolt Action sniper rifles to balance them in normal mode and TVHM (It isnt much)
+13.	Made The Ogre the other vladof barrel, and gave it 10% damage buff.
+14.	Removed the -20% Penalty on Assault Rifles to make them compete in end game.
+15.	Removed the Tunguskas self- damage on the big radius.
+16.	Reversed the bonuses for Bandit and Torgue sights buffs by accident, but theyre fixed now.
+17.	Indirectly buffed the gub as part of the Bandit Pistol buff.
+18.	Indirectly buffed the Tinderbox as part of the Bandit Pistol buff.
+19.	Changed the Laser Accuracy accessory of pistols to boost projectile speed by 40% instead of 20%.
+20.	Boosted the damage of the HawkEye by 8%.
+21.	Boosted the damage of the Veruc by 10%.
+22.	Boosted the damage of the Seeker by 30%.
+23.	Buffed the Actualizers reload speed, with an additional 30% more damage.
+24.	Reverted back the changes made to the volcano, instead, it has a big splash radius with increased DoT damage by 65%
+25.	Buffed the hellfires splash radius (Tripled) and damage over time. (By 10%)
+26.	Lifted up the damage penalty of the infection by a bit. (200%) and upped the dot damage by 30%.
+27.	The Tediore Barrel on Pistols now gives you reload speed instead of nothing. (Its a fair amount)
+========================================
+
+==================Shields===============
+28.	Reverted the WTF shield back from the Bigg Thumppr.
+29.	Made the Bigg Thumppr an actual legendary melee shield. (Replaced the Pot o Gold.)
+30.	Made the WTF shield not harm you, spawn an extra projectile from the original three, have more damage and more chance to spawn them.
+31.	Made the Fabled Tortoise slow you down less. [Went from 80% to 40%]
+32.	Made the love thumper not do friendly damage.
+========================================
+
+===================Relics===============
+33.	Fixed the UI of the movement speed relic.
+========================================
+
+===================COMs=================
+34.	Restored back the shock trooper to the original form (The bonuses werent applying right and they were sort of broken)
+35.	Fixed Most of the UI Problems with skills. (I.E Gaiges COMs not showing the proper skills)
+36.	Buffed the Spys CoMs cooldown by a lot.
+37.	Salvadors Beast Class Mod now boosts Aint got time to bleed instead of Just got real.
+38.	Fixed the health passive on Beasts class mod to be multiplicative.
+39.	Salvadors Titan Class mod now boosts Sexual Tyrannosaurus instead of Out of Bubblegum.
+40.	Legendary Titan now boosts Aint Got Time to Bleed and Sexual Tyrannosaurus instead of Out of Bubblegum and Locked and Loaded.
+41.	Zer0s Survivor COM now boosts Innovate instead of Resurgence.
+42.	Fixed the Health passive on Zer0s Survivor mod to be multiplicative.
+43.	Made Legendary Reaper boost Boiling Blood instead of Blood overdrive, and Salt the wound instead of Thrill of the kill.
+44.	Made Kriegs Crunch class mod boost Salt the Wound instead of Blood Bath.
+45.	Changed Axtons Specialist class mod to boost Onslaught instead of Forbearance.
+46.	Changed Punks class mod to boost Death from above instead of Typecast Inconoclast
+47.	Changed back Gaiges Jill of All Trades class mod back to the original state.
+========================================
+
+================Grenades================
+No Changes
+========================================
+
+====Loots and drops And Quest items=====
+48.	Made the Gold Golem have a rare chance of dropping the Grog Nozzle.
+49.	Removed the two heads from Warriors lootpool. And made it less crowded.
+50.	Made Voracs quest give you proper rewards. (More XP and a quality item. (Any E-Tech)
+51.	Made Terras quest give you proper rewards.(More XP and a quality item. (Any E-Tech)
+52.	Made Hyperious quest give you proper rewards.(More XP and a quality item. (Any E-Tech)
+53.	Made Master Gees quest give you proper rewards.(More XP and a quality item. (Any E-Tech)
+54.	Made Petes quest give you proper rewards.(More XP and a quality item. (Any E-Tech)
+55.	Made The Ancient Dragon of Destructions quest give you proper rewards. (More XP and a quality item. (Any E-Tech)
+56.	Made Lilith give you a choice of a blue class mod in TVHM and above.
+57.	Made Roland give you a blue class mod in TVHM and above after coming back to Sanctuary (Instead of green)
+58.	Made The Creature Slaughters round 5 repeatable.
+59.	Made The Bandit Slaughters round 5 repeatable.
+60.	Made The Hyperion Slaughters round 5 repeatable.
+61.	Made the threshold for blue and above gear to spawn level 1 instead of level 7. (This means that you will get good quality gear from the beginning of the game instead of after Flynt, WAY less greens and less pistols.)
+62.	Made the Bekah to be considered into the pearlecent world drop loot pool.
+63.	Made the Godfinger to be considered into the pearlecent world drop loot pool.
+64.	Made the Wanderlust to be considered into the pearlecent world drop loot pool.
+65.	Made the Carnage to be considered into the pearclecent world drop loot pool.
+66.	Made Moxxi have a 20% chance to give you a bad touch instead of a good touch.
+67.	Made Vermi have an increased chance to spawn in Solo (From 10% to 15%)
+68.	Made Varkids have an increased chance of evolving.
+69.	Donkey Mong has the ability to drop the BiggThumppr.
+70.	Made Mister Boney Pants Guy have a chance to drop the Gub.
+71.	Made the Peak Reward be an E-Tech instead of a purple. (Legendary isnt possible since it also gives you a pearlecent, and thats a bit too much)
+72.	Replaced the Kiss of Death with the Fibber from Hyperious loot pool.
+73.	Made Muscles have a chance to drop Sledges Shotgun.
+74.	H3RL-E Now has a chance to drop the Orphan Maker.
+75.	Made Spiderpants have a chance to drop a Quazar.
+76.	Made Bone Head drop the Shredifier less. (It was 33% before, now its about 10%)
+77.	Made Bad Maw have a chance to drop the Deliverance.
+78.	Made Mad Mike have a chance to drop the Madhous!
+79.	Made Prospector Zeke have a chance to drop the Skullmasher.
+80.	Made Jackenstein have a chance to drop the Conference Call.
+81.	Made Arizona have a chance to drop the Flakker.
+82.	Made Badassasarus Rex have a chance to drop any of the Torgue Legendaries.
+========================================
+
+=============Character Skills===========
+83.	Reduce the cooldown on Scorn to 8 seconds.
+84.	Returned Kriegs Raving Retribution Rants.
+85.	Increased the base damage of Axtons turret by 20% and gave it 20% more fire rate.
+86.	Sentry: Replaced Burst fire with Fire rate, 3% per point.
+87.	Laser Sight: Its 5% per point, and in addition it adds turret damage as well.
+88.	Removed the damage penalty from Scorched Earth (It was 15% turret damage penalty)
+89.	Crisis Management: Replaced the melee damage with damage reduction.
+90.	Double up: Removed the 15% turret damage penalty.
+91.	Impact Replaced Melee damage with accuracy.
+92.	Overload: 5% Per level but it affects all gun types.
+93.	Battlefront: Replaced melee damage with critical hit damage.
+94.	Duty calls: Replaced fire rate with additive critical hit damage, changed gun damage to 10% per point
+95.	Ranger: Now its 2% per point.
+96.	Nuke: Doubled the damage of Nuke, and the fire dot by x5.
+97.	Preparation is now 4% shield capacity instead of 3%.
+98.	Last Ditch Effort: Changed gun damage to Weapon Swap Speed, 12% Per point.
+99.	Forbearance: Replaced Max health with Damage Reduction, 2% per point.
+100.	Phalanx Shield: Doubled the capacity of Phalanx Shield.
+101.	Mind's Eye: Replaced melee damage with accuracy, 5% per point
+102.	Helios: Procs after Ruin's slag
+103.	Blight Phoenix: Doubled the Damage.
+104.	Backdraft: Doubled the damage.
+105.	Ruin: Buff damage and DOT by 5x 
+106.	Bloody Revival: Removed assault rifle requirement
+107.	Light The Fuse: 100% damage buff in UVHM, unchanged in TVHM and NVHM 
+108.	Hellfire Halitosis: 4x damage buff (Check to see how OP this is)
+109.	I'm the Juggernaut: Buffed to 12% per point
+110.	Hard to Kill: Buffed regen to 0.2% per point
+111.	Made Of Sterner Stuff: Upped damage reduction to 4% per point, and melee damage to 6% per point
+112.	More Pep: Doubled all stats
+113.	Shock Storm: Doubled radius
+114.	Wires Don't Talk: Upped to 5% per point
+115.	With Claws: Upped melee damage to 1.25% per stack (It rounds it to 1.3 but it's still 1.25)
+116.	Critical Ascension: Decays at 3 seconds between stacks (was 1 second per stack) still starts decay after 6 seconds
+117.	Kill Confirmed: Stacks instantly on scope, was 2.5 seconds each time, and is now less per point (5% per level)
+118.	Resurgence: is now 6% per point.
+119.	Innervate: Upped health regen to 1.2% per point.
+120.	Iron Hand: Swapped max health for damage reduction, same percentage.
+========================================
+
+==================Visuals (Credit goes to Davespineapple for doing all of these)===============
+121.	Gave the Unforgiven an actual skin.
+122.	Gave the Butcher an actual skin.
+123.	Gave the Avenger an actual skin.
+124.	Gave the Tunguska an actual skin.
+125.	Gave the Stalker an actual skin.
+126.	Gave the Sawbar an actual skin.
+127.	Gave the Bearcat an actual skin.
+128.	Gave the Storm an actual skin.
+129.	Gave the Flayer the unique skin it had.
+130.	Gave the Sloth a fresh new look.
+131.	Gave the Naught the same skin in Pre-Sequel (Minus the decals)
+================================================================================================
+
+
+v1.0
 ==================Guns==================
 1.	Made the bearcat consume 2 ammo per shot and buff the damage by 120%.
 2.	Buffed the damage of Unforgiven by 50% and increase the fire rate slightly.
@@ -31,7 +190,7 @@
 30.	Balanced the BoneShredder.
 31.	Buffed The Damned Cowboy. (More Crit and more damage)
 32.	Buffed The Shredifier by giving it 25% more damage.
-33.	Buffed The Deliverance�s damage.
+33.	Buffed The Deliverance’s damage.
 34.	Return The Twister back to 100% Splash.
 35.	Made The Skullmasher how it was in Pre-Sequel.
 36.	Seriously buffed Bolt Action Jakobs sniper rifles to make it worth it.
@@ -76,28 +235,28 @@
 ====================COMs================
 67.	Changed Legendary Pointman to Legendary Grenadier.
 68.	Made Legendary Sniper Boost Fast Hands instead of Kill Confirmed.
-69.	Changed the Legendary Anarchist to boost Better Half. (UI Won�t display it)
+69.	Changed the Legendary Anarchist to boost Better Half. (UI Won’t display it)
 70.	Buffed the passives of each Slayer of Terra COM for each character
-71.	Fixed Axton�s Terra�s COM
-72.	Fixed Zer0�s Terra�s COM
-73.	Fixed Maya�s Terra�s COM
-74.	Fixed Sal�s Terra�s COM
-75.	Fixed Krieg�s Terra�s COM
-76.	Fixed Gaige�s Terra�s COM
+71.	Fixed Axton’s Terra’s COM
+72.	Fixed Zer0’s Terra’s COM
+73.	Fixed Maya’s Terra’s COM
+74.	Fixed Sal’s Terra’s COM
+75.	Fixed Krieg’s Terra’s COM
+76.	Fixed Gaige’s Terra’s COM
 77.	Changed the passive of the specialist COM of Axton to include Shotgun Damage and Accuracy.
-78.	Changed the Shock Trooper�s to have fire rate instead of shock damage.
+78.	Changed the Shock Trooper’s to have fire rate instead of shock damage.
 79.	Made The Anarchist COM boost Mylin, Smaller Lighter, faster and Better half.
 80.	Changed the Crunch to have Bloodbath, taste of blood and strip the flesh.
-81.	Made Slab�s class mod�s passive�s Type B.
+81.	Made Slab’s class mod’s passive’s Type B.
 82.	Changed the Sweetheart classmod to have CUT, Fancy Maths, and the better half. And make the Passive Type B.
-83.	Changed Jill of all trades to have Unstoppable Force instead of that one excuse of a skill (UI Won�t display it)
-84.	Changed Punk to have Typecast Iconoblast.(UI Won�t display it)
+83.	Changed Jill of all trades to have Unstoppable Force instead of that one excuse of a skill (UI Won’t display it)
+84.	Changed Punk to have Typecast Iconoblast.(UI Won’t display it)
 85.	Changed Prodigy to have Smaller Lighter Faster.
 =========================================
 ====================Grenades================
-86.	Made the O-Negative come in 0 fuse. (Fusetime says it�s 1 but it�s actually 0.)
+86.	Made the O-Negative come in 0 fuse. (Fusetime says it’s 1 but it’s actually 0.)
 87.	Buffed Normal Tediore and Bandit grenadse by 33%
-88.	Buffed the Leech�s damage slightly. 
+88.	Buffed the Leech’s damage slightly. 
 89.	Made Slag grenades more reliable to slag.
 =============================================
 
