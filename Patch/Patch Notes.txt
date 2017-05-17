@@ -1,3 +1,141 @@
+v3.0
+==================Guns==================
+1.	Changed Kerblasters main projectile to be Grenade Splash
+2.	Buffed the Stinkpot to be in line with the regular Cannon(which was buffed in 2.0)
+3.	Torgue Barreled ARs now cost 2 ammo per shot, from 4 per shot.
+4.	Torgue Barrel for Bandit AR now cost 2 ammo per shot, from 3 per shot.
+5.	Stalker Should be able to spin now (Didnt before)
+6.	Made the Chopper consume 4 ammo per shot instead of 6, and gave it 10% more damage.
+7.	Storms orb should deal 30% of the damage dealt instead of the original 10%
+8.	Gave the Patriot 40% extra damage to make it more relevant.
+9.	Gave all the Torgue Barreled Assault Rifles a massive damage buff.
+10.	Hyperion E-Tech Snipers have more fire rate now.
+11.	Removed the nasty penalties from the Evil Smasher, and made it an above average AR. (Has nothing to do with the effect)
+12.	Made the Commerce have the Maliwan barrel, with an increased chance to shock, shock DoT and damage.
+13.	Made the Cobra have more increased damage, and more fire rate.
+14.	Removed all the penalties of the Trespasser, and made it Dahl barrel, plus a few damage buffs.
+15.	Made the Boompuppys projectile to be considered grenade damage, and gave it 180% increase in damage, with overall stat boosts.
+16.	Made the Judge have the Jakobs Barrel, with 35% increase in damage.
+17.	Made the Avengers ammo regen way faster (5 per second), and gave it 20% extra damage.
+18.	Fixed the Bolt Action snipers fire rate again (they were slower than the usual)
+========================================
+
+==================Shields================
+19.	Buffed the capacity and regeneration rate of the Manly Man Shield, reduced the curse effect, massively increased the damage dealt, and made it so youre completely immune to explosive damage.
+========================================
+
+===================Relics=================
+20.	Increased the damage dealt by the Deputy Badge. (Scale value and base value)
+21.	Buffed the Vault Hunter relic to drop Blues (Thats what rare means) from 5% to 7.5%, it has been tested and its a significant increase because of how loot works. (What the relic does is just buff blue drop rates for less whites, thats it, dont get it confused.)
+========================================
+
+===================COMs================
+22.	Reverted back Legendary Grenadier to Legendary Pointman and Made it boost Crisis Management, Grit, Forbearance, Able and Healthy. (Reasoning behind this is that it was the only COM that was custom and it was overlapping with other mods.)
+23.	Pointman class mod now boosts Grit, Preparation and able, and has multiplicative health bonuses.
+24.	Legendary Ranger boosts Onslaught properly now. (Thanks to MegaCyber!)
+25.	Specialist COM boosts Onslaught properly now.
+========================================
+
+================Grenades================
+No Changes
+========================================
+
+====Loots, drops And Quest items + Enemies====
+26.	OMGWTH Should drop Gen 2 Pearls as well now.
+27.	Increased the shield, health, and damage of Super Badass Stalkers, and gave it a super badass lootpool instead of a badass lootpool
+28.	Increased the shield, health, damage of H3RL-E, and sped up its barrel throwing animation
+29.	Increased the chance of OOO spawning (From 1% to 5%)
+30.	Increased Damage over Times Damage in UVHM by 250%
+31.	Increased Weapon Swap Speed in OP levels by 20%
+32.	Dexi now drops the Lady Fist, Flayer, Hive and Twister, and he has a 100% chance to drop them. (Including the chopper)
+33.	Made Jimmy have Ultimate Badass Loot List (He drops purples and blues like Saturn for example) and Loot Midget List.
+34.	Made H3RL-3 have a chance to drop the Sandhawk and Pimpernel. 33% chance for a drop.
+35.	Made Hide of Terra never spawn with bad parts, and it has a high chance to get the Grounded Prefix.
+36.	Made anyone with a rare spawn chance have 20% to drop their legendary instead of 10%.
+37.	Son of Crawmerax (Raid boss) has a 10% chance to drop any pearl in the game starting UVHM after level 51.
+38.	Son of Crawmerax (Raid boss) Always drops on level gear now.
+39.	Dexi, Vorac and Triple O All have a chance to drop the second generation of legendary class mods.
+40.	Sinkhole has a chance to drop the Bitch. 
+41.	Flinter has a chance to drop the Volcano.
+42.	Dribbles has a chance to drop the Badaboom.
+43.	Woundspike has a chance to drop the Maggie.
+44.	Terras quest now gives you a guaranteed random legendary. (Can be any legendary from the world drop pool)
+45.	Pyro Petes quest now gives you a guaranteed random legendary. (Can be any legendary from the world drop pool)
+46.	Voracs quest now gives you a guaranteed random legendary. (Can be any legendary from the world drop pool)
+47.	Ancient Dragons of Destructions quest now gives you a guaranteed random legendary. (Can be any legendary from the world drop pool)
+48.	Hyperious quest now gives you a guaranteed random legendary. (Can be any legendary from the world drop pool)
+49.	Master Gees quest now gives you a guaranteed random legendary. (Can be any legendary from the world drop pool)
+50.	Increased the chance for Warlord Slog to drop the Ogre.
+51.	Grandma Flexingtons Story Raid difficulty gives you a random Torgue legendary instead of a purple launcher.
+52.	Motor Mamma now has a chance to drop the Baby Maker.
+53.	Michael Mamaril gives you purples all the time now, and has a 10% chance to give you a legendary.
+54.	BA. Rex can drop 15 Torgue Tokens now.
+55.	Improved chance for Splinter Group to drop a Storm Front. (From 2.5% to 7.5% per TMNT Rat.)
+56.	Gold Golem no longer drops the deliverance and the infinity, to increase the drop rates for the Grog Nozzle.
+57.	Vermi has 20% chance to spawn now, instead of 15% of the old patch.
+========================================
+
+=============Character Skills===============
+58.	Made Scorched Earth give Axton 10% Explosive damage
+59.	Double Up gives the turret 30% Damage
+60.	Made Duty Calls to 8% per level instead of 10% per level
+61.	Made Nuke give Axton 20% Cooldown Reduction
+62.	Phalanx Shield gives Axton 20% Shield Capacity
+63.	Gemini Gives the turret 30% Fire rate and 3 more shots per burst
+64.	Swapped Crisis Management and Resourceful in the skilltree
+65.	Reverted Last Ditch Effort to Gun Damage
+66.	Made Robot Rampage give Gaige 20% gun damage
+67.	Made Strength of Five Gorillas give gun damage to Gaige as well
+68.	Made Shock and AAAGGGHHH! Give Gaige 25% reload speed
+69.	Make it Sparkle gives 30% elemental effect chance and damage to Gaige
+70.	Buck Up additionally gives 15% shield capacity to Gaige
+71.	Sped up the animation for 1-2 Boom, doubled its damage(including DoT), and made it give Gaige 15% Explosive damage
+72.	Sped up the animation for Explosive Clap, increased its damage, and made it give Gaige 20% melee damage
+73.	Doubled the Stares damage(including DoT)
+74.	Annoyed Android now increases the damage Deathtrap deals as well as its movement speed.
+75.	With Claws give 0.625% Swap Speed per Anarchy stack
+76.	Sharing is Caring gives Gaige 25% Shield capacity/Recharge Rate.
+77.	Added Blood Euphoria (which was an unused but existing skill) as a Bloodlust tier4 gamechanger for Krieg
+78.	Light the Fuse has been buffed in NVHM and TVHM as well (no change in UVHM)
+79.	Pull the Pin gives Krieg 10% Grenade damage
+80.	Fixed Elemental Elation and Salt the Wound stacks overlapping each other
+81.	The self-hit damage from Silence the Voices is no longer affected by Grenade Damage.
+82.	Optics now give Zero aiming speed, and increased the aim steadiness
+83.	Kill confirmeds value has been reverted (its still instant however)
+84.	Made Grim give Zer0 4% Cooldown Rate per level, and swapped Grim and Fearless in the skilltree.
+85.	Fearless reduces the duration of status effects on you instead of giving Fire rate
+86.	Like the Wind additionally gives Zer0 5% chance to dodge bullets per level
+87.	Increased the chance for C0unter Strike to trigger after getting hit.
+88.	Fixed Lay Waste/Keep it Piping Hot/5 Shots or 6/Incite/Just Got Real/Im your Huckleberry not giving offhand weapons the bonuses.
+89.	Made Auto Loader give Salvador 15% Reload speed
+90.	Reverted Helios change to fix a bug where it did not work without Ruin, and increased the damage by 50%
+91.	Removed the sound from Life Tap
+92.	Doubled the damage that Recompense deals.
+93.	Doubled the Backdraft melee damage, and nerfed the nova slightly
+94.	Made Res give Maya 35% FFYL duration
+95.	Made Overload 7% for all magazines instead of 5%.
+96.	Silence the voices is no longer considered grenade damage.
+97.	Made Scorns cooldown 10 seconds instead of 8. (It was too much.)
+========================================
+==================Visuals================
+98.	Big Boom Blaster has a proper Torgue looks now, instead of Dahl.
+99.	Flayer now has the proper Pre-Sequel looks.
+========================================
+
+v2.1
+==================Changes==================
+1.    Reverted back the Ogre's barrel back to Spinny vladof (Spin time delay was still there), but it should still have a 10% gun buff
+2.    Reverted back Aggression relics back the original form (They weren't giving you any damage bonus at all)
+3.    Accidently buffed the Torgue barrel related to bandit twice (It should buff bandit and dahl now.
+4.    H3RL-3 should have a 33% chance to drop the Orphan maker instead of 10% (It's a blue so it should drop more often like the rest)
+5.    Hellfire should have a stronger DoT now (By 30% more than the original buff) and bigger splash.
+6.    Reverted back the Legendary Reaper back to the original form (I didn't playtest this right and I made it somehow worse)
+7.    Tuned down the melee damage on the pun-chee (It was 1.56 mil pre-patch, my patch made it 2.48 mil but now it should be slightly higher than a hide, but not too much 
+
+since there's no point in getting a hide)
+8.    Further buffed the Impaler's damage
+===========================================
+
 v2.0
 ==================Guns==================
 1.	Reverted the Emperor back from the Torrent and made it have a middle ground between both. (Now its a buffed Emperor with Increased Damage and faster fire rate, and also spawns with a scope, dont forget that.)
