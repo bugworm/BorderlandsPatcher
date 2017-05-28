@@ -1,3 +1,6 @@
+v3.1
+1. Fixed a problem with the patch causing hide of terras to get deleted, shouldn't happen anymore.
+
 v3.0
 ==================Guns==================
 1.	Changed Kerblasters main projectile to be Grenade Splash
