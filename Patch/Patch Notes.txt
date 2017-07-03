@@ -1,4 +1,38 @@
 v3.1
+1.	Fixed Manly Man shield not doing increased damage on a melee crit
+2.	Reduced the UVHM DoT Buff to +150% and removed the OP level 20% Swap speed buff
+3.	Doubled Homing Grenade's projectile speed
+4.	made GOD-liaths have a chance to drop a legendary weapon.
+5.	buff Neo/Evo (Use Orudeon's Fix)-done
+6.	Badass Pirates has a chance to drop the Stinkpot now.
+7.	Iron GOD now drops 3 gemstone weaponry upon death
+8.	Evolution`s base healing rate has been quintupled.
+9.	Neogenator`s healing has been tripled
+10.	increased the speed of healing trail by 50% for Transfusion grenade/Maya's Sweet Release
+11.	Contraband Skyrocket scales up to OP8 now.
+12.	DJ Tanner has a chance to drop the Sham now
+13.	Roscoe has a chance to drop the Hive.
+14.	Cursed Pirates can drop Captain Blade's gear.
+15.	removed Orphan Maker from H3rl-E.
+16.	tripled the splash radius of Rolling Thunder bounce and made them not damage you
+17.	make Skyrocket scale to OP8-done
+18.	Increased the chance for Hyperius, Master Gee, Voracidous to drop a seraph by 10% and added every seraph from their respective dlcs.
+19.	added every seraph from Torgue dlc to Pyro Pete's seraph pool
+20.	buffed the landscaper
+21.	buffed the Greed
+22.	Gave new skins to Infection, Interfacer, Leadstorm, Devastator.
+23.	reduced the spread of Teeth.
+24.	Lowered regen on innervate to 1% from 1.2%
+25.	Replaced the gun damage on innervate with 4% reduced DoT duration per level.
+26.	Removed reduced DoT duration from fearless and returned the fire rate
+27.	Added 0.3% per level health regen to Fearless
+28.	Removed Crit from Deception description
+29.	fixed Be Like Water giving 10% gun damage instead of 20%
+30.	Doubled Recompense damage and halved the chance
+31.	doubled slag chance of Scorn
+32.	Removed thoughtlock's increases cooldown by 3 seconds' text from card.
+
+v3.0.1
 1.  Fixed a problem with the patch causing hide of terras to get deleted, shouldn't happen anymore.
 
 v3.0
