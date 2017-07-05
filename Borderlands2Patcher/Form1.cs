@@ -19,15 +19,6 @@ namespace Borderlands2Patcher
         public Form1()
         {
             InitializeComponent();
-            try
-            {
-                string[] version = getTextFile(@"https://raw.githubusercontent.com/AnotherBugworm/Borderlands2Patcher/master/Patch/Version.txt");
-                label1.Text += version[0];
-            }
-            catch (System.Net.WebException)
-            {
-                label1.Text = "Can't get patch version.";
-            }
         }
 
         public byte[] GetFileViaHttp(string url)
@@ -46,7 +37,10 @@ namespace Borderlands2Patcher
             return content;
         }
 
-        RegistryKey InstallLocation = RegistryKey.OpenBaseKey(RegistryHive.LocalMachine, RegistryView.Registry64).OpenSubKey("SOFTWARE\\Microsoft\\Windows\\CurrentVersion\\Uninstall\\Steam App 49520");
+        static RegistryKey b2il = RegistryKey.OpenBaseKey(RegistryHive.LocalMachine, RegistryView.Registry64).OpenSubKey("SOFTWARE\\Microsoft\\Windows\\CurrentVersion\\Uninstall\\Steam App 49520");
+        static RegistryKey btpsil = RegistryKey.OpenBaseKey(RegistryHive.LocalMachine, RegistryView.Registry64).OpenSubKey("SOFTWARE\\Microsoft\\Windows\\CurrentVersion\\Uninstall\\Steam App 261640");
+        RegistryKey InstallLocation = b2il;
+        bool isBorderlands2 = true;
 
         private void button1_Click(object sender, EventArgs e)
         {
@@ -54,12 +48,19 @@ namespace Borderlands2Patcher
             try
             {
                 string path = InstallLocation.GetValue("InstallLocation") as string;
-                openFileDialog1.FileName = path + "\\Binaries\\Win32\\Borderlands2.exe";
+                if (isBorderlands2)
+                {
+                    openFileDialog1.FileName = path + "\\Binaries\\Win32\\Borderlands2.exe";
+                }
+                else
+                {
+                    openFileDialog1.FileName = path + "\\Binaries\\Win32\\BorderlandsPreSequel.exe";
+                }
                 result = DialogResult.OK;
             }
             catch (NullReferenceException)
             {
-                MessageBox.Show("Cannot detect your game path. Please select Borderlands2.exe file. It's usually on ...\\Steam(Library)\\steamapps\\common\\Borderlands 2\\Binaries\\Win32 directory.");
+                MessageBox.Show("Cannot detect your game path. Please select Borderlands2(PreSequel).exe file. It's usually on ...\\Steam(Library)\\steamapps\\common\\Borderlands 2(PreSequel)\\Binaries\\Win32 directory.");
                 openFileDialog1.Filter = "Executable files (.exe)|*.exe|All Files (*.*)|*.*";
                 openFileDialog1.FilterIndex = 1;
                 result = openFileDialog1.ShowDialog();
@@ -68,12 +69,12 @@ namespace Borderlands2Patcher
             {
                 PatchExe(openFileDialog1.FileName);
             }
+            else MessageBox.Show("Did you select the file? I can't patch the air");
         }
 
         private void PatchExe(string file)
         {
-            if (file.EndsWith("Borderlands2.exe") || file.EndsWith("borderlands2.exe"))
-            {
+            //if (file.EndsWith("Borderlands2.exe") || file.EndsWith("borderlands2.exe"))
                 try
                 {
                     File.Copy(file, file + ".bk", false);
@@ -82,6 +83,8 @@ namespace Borderlands2Patcher
                 {
                     MessageBox.Show("You already have a backup. Skipping.");
                 }
+            if (isBorderlands2)
+            {
                 var stream = new FileStream(file, FileMode.Open, FileAccess.ReadWrite);
                 stream.Position = 0x004F2590;
                 stream.WriteByte(0xff);
@@ -93,12 +96,33 @@ namespace Borderlands2Patcher
                 stream.Close();
                 MessageBox.Show("Done!");
             }
-            else MessageBox.Show("Incorrect filename. I will only patch Borderlands2.exe or borderlands2.exe files");
+            else
+            {
+                var stream = new FileStream(file, FileMode.Open, FileAccess.ReadWrite);
+                stream.Position = 0x00D8BD1F;
+                stream.WriteByte(0xff);
+                for (long i = 0x01982A00; i <= 0x01982A05; i++)
+                {
+                    stream.Position = i;
+                    stream.WriteByte(0x00);
+                }
+                stream.Close();
+                MessageBox.Show("Done!");
+            }
         }
 
         private void button2_Click(object sender, EventArgs e)
         {
-            string path = Environment.GetFolderPath(Environment.SpecialFolder.MyDocuments) + "\\my games\\borderlands 2\\willowgame\\Config\\WillowInput.ini";
+            string tmppath;
+            if(isBorderlands2)
+            {
+                tmppath = "\\my games\\borderlands 2\\willowgame\\Config\\WillowInput.ini";
+            }
+            else
+            {
+                tmppath = "\\my games\\borderlands the pre-sequel\\willowgame\\Config\\WillowInput.ini";
+            }
+            string path = Environment.GetFolderPath(Environment.SpecialFolder.MyDocuments) + tmppath;
             string[] temp = File.ReadAllLines(path);
             int i;
             for (i = 1; i <= temp.Length; i++)
@@ -113,7 +137,7 @@ namespace Borderlands2Patcher
 
         private void button3_Click(object sender, EventArgs e)
         {
-            MessageBox.Show("To use Community Patch you need to patch your borderlands2.exe (it will backup original file, don't worry), add console hotkey if you doesn't have one and place patch file(patch.txt) to Binaries directory. Program will find your game path and download latest patch automaticly, if won't find it, you still can choose path manually. Then launch your game, open console, type \"exec patch.txt\" and press enter. Do it after game downloads all stuff(when you see actual menu). That's all, you can now enjoy patch! It will work only for current session, you need to enter console command every time you launch the game. You can press \"Arrow Up\" to show your last typed command on console.");
+            MessageBox.Show("To use Community Patch you need to patch your Borderlands2(PreSequel).exe (it will backup original file, don't worry), add console hotkey if you doesn't have one and place patch file(patch.txt) to Binaries directory. Program will find your game path and download latest patch automaticly, if won't find it, you still can choose path manually. Then launch your game, open console, type \"exec patch.txt\" and press enter. Do it after game downloads all stuff(when you see actual menu). That's all, you can now enjoy patch! It will work only for current session, you need to enter console command every time you launch the game. You can press \"Arrow Up\" to show your last typed command on console.");
         }
 
         private void linkLabel1_LinkClicked(object sender, LinkLabelLinkClickedEventArgs e)
@@ -122,40 +146,45 @@ namespace Borderlands2Patcher
             System.Diagnostics.Process.Start("https://youtu.be/o_ee3BM1TQQ");
         }
 
-        private void linkLabel2_LinkClicked(object sender, LinkLabelLinkClickedEventArgs e)
-        {
-            linkLabel2.LinkVisited = true;
-            System.Diagnostics.Process.Start("https://github.com/AnotherBugworm/Borderlands2Patcher/blob/master/Patch/Patch%20Notes.txt");
-        }
-
         private void button4_Click(object sender, EventArgs e)
         {
             try
             {
-                string[] content = getTextFile(@"https://raw.githubusercontent.com/AnotherBugworm/Borderlands2Patcher/master/Patch/Patch.txt");
-            
+                string[] content, contentOffline;
+                if (isBorderlands2)
+                {
+                    content = getTextFile(@"https://raw.githubusercontent.com/BLCM/BLCMods/master/Borderlands%202%20mods/Shadowevil/Patch.txt");
+                    contentOffline = getTextFile(@"https://raw.githubusercontent.com/BLCM/BLCMods/master/Borderlands%202%20mods/Shadowevil/PatchOffline.txt");
+                }
+                else
+                {
+                    content = getTextFile(@"https://raw.githubusercontent.com/BLCM/BLCMods/master/Pre%20Sequel%20Mods/Community%20Patch/CommunityPatch");
+                    contentOffline = getTextFile(@"https://raw.githubusercontent.com/BLCM/BLCMods/master/Pre%20Sequel%20Mods/Community%20Patch/OfflineCommunityPatch");
+                } 
             try
             {
                 string path = InstallLocation.GetValue("InstallLocation") as string;
-                File.WriteAllLines(path + "\\Binaries\\patch.txt", content);
+                File.WriteAllLines(path + "\\Binaries\\Patch.txt", content);
+                File.WriteAllLines(path + "\\Binaries\\PatchOffline.txt", contentOffline);
                 MessageBox.Show("Done!");
             }
             catch (NullReferenceException)
             {
-                MessageBox.Show("Cannot detect your game path. Choose your Binaries directory. It's usually on ...\\Steam(Library)\\steamapps\\common\\Borderlands 2\\Binaries");
+                MessageBox.Show("Cannot detect your game path. Choose your Binaries directory. It's usually on ...\\Steam(Library)\\steamapps\\common\\Borderlands 2(PreSequel)\\Binaries");
                 DialogResult result = new DialogResult();
                 result = folderBrowserDialog1.ShowDialog();
                 if (result == DialogResult.OK)
                 {
                     string path = folderBrowserDialog1.SelectedPath;
-                    File.WriteAllLines(path + "\\patch.txt", content);
+                    File.WriteAllLines(path + "\\Patch.txt", content);
+                    File.WriteAllLines(path + "\\PatchOffline.txt", contentOffline);
                     MessageBox.Show("Done!");
                 }
             }
                 }
             catch (System.Net.WebException)
             {
-                MessageBox.Show("Looks like you doesn't have internet connetcion. I can't download patch for you, sorry. I will redirect you to patch location, download it manually and place it in ...\\Borderlands 2\\Binaries directory.");
+                MessageBox.Show("Looks like you doesn't have internet connetcion. I can't download patch for you, sorry. I will redirect you to patch location, download it manually and place it in ...\\Borderlands 2(PreSequel)\\Binaries directory.");
                 System.Diagnostics.Process.Start("https://raw.githubusercontent.com/AnotherBugworm/Borderlands2Patcher/master/Patch/Patch.txt");
             }
         }
@@ -176,6 +205,28 @@ namespace Borderlands2Patcher
             e.Effect = DragDropEffects.Link;
             files = (string[])e.Data.GetData(DataFormats.FileDrop);
             
+        }
+
+        private void comboBox1_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            if(comboBox1.Text == "Borderlands 2")
+            {
+                isBorderlands2 = true;
+                button1.Text = "Patch Borderlands2.exe";
+                InstallLocation = b2il;
+            }
+            else
+            {
+                isBorderlands2 = false;
+                button1.Text = "Patch BorderlandsPreSequel.exe";
+                InstallLocation = btpsil;
+            }
+        }
+
+        private void linkLabel2_LinkClicked(object sender, LinkLabelLinkClickedEventArgs e)
+        {
+            linkLabel2.LinkVisited = true;
+            System.Diagnostics.Process.Start("https://github.com/BLCM/BLCMods");
         }
     }
 }
