@@ -137,7 +137,7 @@ namespace Borderlands2Patcher
 
         private void button3_Click(object sender, EventArgs e)
         {
-            MessageBox.Show("To use Community Patch you need to patch your Borderlands2(PreSequel).exe (it will backup original file, don't worry), add console hotkey if you doesn't have one and place patch file(patch.txt) to Binaries directory. Program will find your game path and download latest patch automaticly, if won't find it, you still can choose path manually. Then launch your game, open console, type \"exec patch.txt\" and press enter. Do it after game downloads all stuff(when you see actual menu). That's all, you can now enjoy patch! It will work only for current session, you need to enter console command every time you launch the game. You can press \"Arrow Up\" to show your last typed command on console.");
+            MessageBox.Show("To use Community Patch you need to patch your Borderlands2(PreSequel).exe (it will backup original file, don't worry), add console hotkey if you doesn't have one and place patch file(Patch.txt and PatchOffline.txt) to Binaries directory. Program will find your game path and download latest patch automaticly, if won't find it, you still can choose path manually. Then launch your game, open console, type \"exec Patch.txt\"(or PatchOffline.txt if you want to play offline) and press enter. Do it after game downloads all stuff(when you see actual menu). That's all, you can now enjoy patch! It will work only for current session, you need to enter console command every time you launch the game. You can press \"Arrow Up\" to show your last typed command on console.");
         }
 
         private void linkLabel1_LinkClicked(object sender, LinkLabelLinkClickedEventArgs e)
