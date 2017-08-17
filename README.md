@@ -1,6 +1,9 @@
 # BorderlandsPatcher
 Patcher for borderlands2.exe and borderlandspresequel.exe for ability to use community patch. More info about patch: https://youtu.be/o_ee3BM1TQQ 
 
+# Screenshot
+![](https://github.com/bugworm/BorderlandsPatcher/blob/master/Screenshot.png?raw=true)
+
 # Downloading
 You can find binary(.exe) file here: https://github.com/bugworm/BorderlandsPatcher/releases/
 
