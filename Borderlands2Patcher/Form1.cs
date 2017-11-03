@@ -15,12 +15,38 @@ namespace Borderlands2Patcher
 {
     public partial class Form1 : Form
     {
+        private bool isBorderlands2 = true;
         private string b2il = String.Empty;
         private string btpsil = String.Empty;
 
         public Form1()
         {
             InitializeComponent();
+        }
+
+        public static string AskForInstallLocation(FolderBrowserDialog folderBrowser, bool isBorderlands)
+        {
+            folderBrowser.ShowNewFolderButton = false;
+
+            if (isBorderlands)
+            {
+                folderBrowser.Description = "Select the Borderlands 2 installation directory.\n\n";
+                folderBrowser.Description += "It's usually ...\\Steam(Library)\\steamapps\\common\\Borderlands 2";
+            }
+            else
+            {
+                folderBrowser.Description = "Select the Borderlands Pre Sequel installation directory.\n\n";
+                folderBrowser.Description += "It's usually ...\\Steam(Library)\\steamapps\\common\\BorderlandsPreSequel";
+            }
+
+            DialogResult result = folderBrowser.ShowDialog();
+
+            if (result == DialogResult.OK)
+            {
+                return folderBrowser.SelectedPath;
+            }
+
+            return String.Empty;
         }
 
         public byte[] GetFileViaHttp(string url)
@@ -38,8 +64,6 @@ namespace Borderlands2Patcher
             string[] content = str.Split(new[] { "\r\n" }, StringSplitOptions.RemoveEmptyEntries);
             return content;
         }
-
-        bool isBorderlands2 = true;
 
         private void Form1_Shown(object sender, EventArgs e)
         {
@@ -66,54 +90,58 @@ namespace Borderlands2Patcher
 
         private void button1_Click(object sender, EventArgs e)
         {
-            DialogResult result = new DialogResult();
+            string filepath;
             try
             {
                 if (isBorderlands2)
                 {
+                    // if we don't know the install location
                     if (String.IsNullOrEmpty(b2il))
                     {
-                        throw new NullReferenceException();
+                        b2il = AskForInstallLocation(folderBrowserDialog1, isBorderlands2);
                     }
 
-                    openFileDialog1.FileName = b2il + "\\Binaries\\Win32\\Borderlands2.exe";
+                    filepath = b2il + "\\Binaries\\Win32\\Borderlands2.exe";
                 }
                 else
                 {
+                    // if we don't know the install location
                     if (String.IsNullOrEmpty(btpsil))
                     {
-                        throw new NullReferenceException();
+                        btpsil = AskForInstallLocation(folderBrowserDialog1, isBorderlands2);
                     }
 
-                    openFileDialog1.FileName = btpsil + "\\Binaries\\Win32\\BorderlandsPreSequel.exe";
+                    filepath = btpsil + "\\Binaries\\Win32\\BorderlandsPreSequel.exe";
                 }
-                result = DialogResult.OK;
+
+                if (VerifyExe(filepath))
+                {
+                    PatchExe(filepath);
+                }
+                else
+                {
+                    MessageBox.Show("Did you select the folder? I can't patch the air");
+                }
             }
-            catch (NullReferenceException)
+            catch (Exception err)
             {
-                MessageBox.Show("Cannot detect your game path. Please select Borderlands2(PreSequel).exe file. It's usually on ...\\Steam(Library)\\steamapps\\common\\Borderlands 2(PreSequel)\\Binaries\\Win32 directory.");
-                openFileDialog1.Filter = "Executable files (.exe)|*.exe|All Files (*.*)|*.*";
-                openFileDialog1.FilterIndex = 1;
-                result = openFileDialog1.ShowDialog();
+                string message = String.Format("Error: {0}\n{1}\n\nStack Trace:\n{2}", err.HResult, err.Message, err.StackTrace);
+                MessageBox.Show(message, "this is a caption", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                Environment.Exit(1);
             }
-            if (result == DialogResult.OK)
-            {
-                PatchExe(openFileDialog1.FileName);
-            }
-            else MessageBox.Show("Did you select the file? I can't patch the air");
         }
 
         private void PatchExe(string file)
         {
             //if (file.EndsWith("Borderlands2.exe") || file.EndsWith("borderlands2.exe"))
-                try
-                {
-                    File.Copy(file, file + ".bk", false);
-                }
-                catch (IOException)
-                {
-                    MessageBox.Show("You already have a backup. Skipping.");
-                }
+            try
+            {
+                File.Copy(file, file + ".bk", false);
+            }
+            catch (IOException)
+            {
+                MessageBox.Show("You already have a backup. Skipping.");
+            }
             if (isBorderlands2)
             {
                 var stream = new FileStream(file, FileMode.Open, FileAccess.ReadWrite);
@@ -142,10 +170,41 @@ namespace Borderlands2Patcher
             }
         }
 
+        private bool VerifyExe(string file)
+        {
+            bool isExeExtension = false;
+            bool isExeMagicNumber = false;
+            try
+            {
+                // if the file has the correct extension
+                isExeExtension = (Path.GetExtension(file) == ".exe");
+
+                // open IDisposable object safely
+                using (FileStream stream = File.OpenRead(file))
+                {
+                    byte[] magicNumber = { 0x0, 0x0 };
+
+                    stream.Seek(0, SeekOrigin.Begin);
+                    stream.Read(magicNumber, 0, 2);
+                    // if the first two bytes are 0x4D5A
+                    isExeMagicNumber = (magicNumber[0] == 0x4D) && (magicNumber[1] == 0x5A);
+                }
+            }
+            catch (Exception)
+            {
+                // suppress exceptions
+            }
+
+            // microsoft doesn't do magic numbers right
+            // (*.dll, *.exe, and *.sys all have the same one)
+            // so let's hope the extension doesn't lie to us
+            return (isExeExtension && isExeMagicNumber);
+        }
+
         private void button2_Click(object sender, EventArgs e)
         {
             string tmppath;
-            if(isBorderlands2)
+            if (isBorderlands2)
             {
                 tmppath = "\\my games\\borderlands 2\\willowgame\\Config\\WillowInput.ini";
             }
@@ -179,47 +238,41 @@ namespace Borderlands2Patcher
 
         private void button4_Click(object sender, EventArgs e)
         {
+            string path;
+            string[] content, contentOffline;
             try
             {
-                string path;
-                string[] content, contentOffline;
                 if (isBorderlands2)
                 {
+                    // if we don't know the install location
+                    if (String.IsNullOrEmpty(b2il))
+                    {
+                        b2il = AskForInstallLocation(folderBrowserDialog1, isBorderlands2);
+                    }
+
                     path = b2il;
+
                     content = getTextFile(@"https://raw.githubusercontent.com/BLCM/BLCMods/master/Borderlands%202%20mods/Shadowevil/Patch.txt");
                     contentOffline = getTextFile(@"https://raw.githubusercontent.com/BLCM/BLCMods/master/Borderlands%202%20mods/Shadowevil/PatchOffline.txt");
                 }
                 else
                 {
+                    // if we don't know the install location
+                    if (String.IsNullOrEmpty(btpsil))
+                    {
+                        btpsil = AskForInstallLocation(folderBrowserDialog1, isBorderlands2);
+                    }
+
                     path = btpsil;
+
                     content = getTextFile(@"https://raw.githubusercontent.com/BLCM/BLCMods/master/Pre%20Sequel%20Mods/Community%20Patch/CommunityPatch");
                     contentOffline = getTextFile(@"https://raw.githubusercontent.com/BLCM/BLCMods/master/Pre%20Sequel%20Mods/Community%20Patch/OfflineCommunityPatch");
                 }
 
-                try
-                {
-                    if (String.IsNullOrEmpty(path))
-                    {
-                        throw new NullReferenceException();
-                    }
+                File.WriteAllLines(path + "\\Binaries\\Patch.txt", content);
+                File.WriteAllLines(path + "\\Binaries\\PatchOffline.txt", contentOffline);
 
-                    File.WriteAllLines(path + "\\Binaries\\Patch.txt", content);
-                    File.WriteAllLines(path + "\\Binaries\\PatchOffline.txt", contentOffline);
-                    MessageBox.Show("Done!");
-                }
-                catch (NullReferenceException)
-                {
-                    MessageBox.Show("Cannot detect your game path. Choose your Binaries directory. It's usually on ...\\Steam(Library)\\steamapps\\common\\Borderlands 2(PreSequel)\\Binaries");
-                    DialogResult result = new DialogResult();
-                    result = folderBrowserDialog1.ShowDialog();
-                    if (result == DialogResult.OK)
-                    {
-                        path = folderBrowserDialog1.SelectedPath;
-                        File.WriteAllLines(path + "\\Patch.txt", content);
-                        File.WriteAllLines(path + "\\PatchOffline.txt", contentOffline);
-                        MessageBox.Show("Done!");
-                    }
-                }
+                MessageBox.Show("Done!");
             }
             catch (System.Net.WebException)
             {
@@ -236,7 +289,8 @@ namespace Borderlands2Patcher
             {
                 PatchExe(files[0]);
             }
-            else MessageBox.Show("Too many files dropped. Drop me Borderlands2.exe only");
+            else
+                MessageBox.Show("Too many files dropped. Drop me Borderlands2.exe only");
         }
 
         private void button1_DragEnter(object sender, DragEventArgs e)
@@ -248,7 +302,7 @@ namespace Borderlands2Patcher
 
         private void comboBox1_SelectedIndexChanged(object sender, EventArgs e)
         {
-            if(comboBox1.Text == "Borderlands 2")
+            if (comboBox1.Text == "Borderlands 2")
             {
                 isBorderlands2 = true;
                 button1.Text = "Patch Borderlands2.exe";
