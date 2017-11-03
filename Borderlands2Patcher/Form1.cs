@@ -15,6 +15,27 @@ namespace Borderlands2Patcher
 {
     public partial class Form1 : Form
     {
+        private static string b2il
+        {
+            get
+            {
+                using (RegistryKey key = Registry.LocalMachine.OpenSubKey(@"SOFTWARE\Microsoft\Windows\CurrentVersion\Uninstall\Steam App 49520"))
+                {
+                    return key.GetValue("InstallLocation") as string;
+                }
+            }
+        }
+
+        private static string btpsil
+        {
+            get
+            {
+                using (RegistryKey key = Registry.LocalMachine.OpenSubKey(@"SOFTWARE\Microsoft\Windows\CurrentVersion\Uninstall\Steam App 261640"))
+                {
+                    return key.GetValue("InstallLocation") as string;
+                }
+            }
+        }
 
         public Form1()
         {
@@ -37,9 +58,6 @@ namespace Borderlands2Patcher
             return content;
         }
 
-        static RegistryKey b2il = RegistryKey.OpenBaseKey(RegistryHive.LocalMachine, RegistryView.Registry64).OpenSubKey("SOFTWARE\\Microsoft\\Windows\\CurrentVersion\\Uninstall\\Steam App 49520");
-        static RegistryKey btpsil = RegistryKey.OpenBaseKey(RegistryHive.LocalMachine, RegistryView.Registry64).OpenSubKey("SOFTWARE\\Microsoft\\Windows\\CurrentVersion\\Uninstall\\Steam App 261640");
-        RegistryKey InstallLocation = b2il;
         bool isBorderlands2 = true;
 
         private void button1_Click(object sender, EventArgs e)
@@ -47,14 +65,13 @@ namespace Borderlands2Patcher
             DialogResult result = new DialogResult();
             try
             {
-                string path = InstallLocation.GetValue("InstallLocation") as string;
                 if (isBorderlands2)
                 {
-                    openFileDialog1.FileName = path + "\\Binaries\\Win32\\Borderlands2.exe";
+                    openFileDialog1.FileName = b2il + "\\Binaries\\Win32\\Borderlands2.exe";
                 }
                 else
                 {
-                    openFileDialog1.FileName = path + "\\Binaries\\Win32\\BorderlandsPreSequel.exe";
+                    openFileDialog1.FileName = btpsil + "\\Binaries\\Win32\\BorderlandsPreSequel.exe";
                 }
                 result = DialogResult.OK;
             }
@@ -150,38 +167,41 @@ namespace Borderlands2Patcher
         {
             try
             {
+                string path;
                 string[] content, contentOffline;
                 if (isBorderlands2)
                 {
+                    path = b2il;
                     content = getTextFile(@"https://raw.githubusercontent.com/BLCM/BLCMods/master/Borderlands%202%20mods/Shadowevil/Patch.txt");
                     contentOffline = getTextFile(@"https://raw.githubusercontent.com/BLCM/BLCMods/master/Borderlands%202%20mods/Shadowevil/PatchOffline.txt");
                 }
                 else
                 {
+                    path = btpsil;
                     content = getTextFile(@"https://raw.githubusercontent.com/BLCM/BLCMods/master/Pre%20Sequel%20Mods/Community%20Patch/CommunityPatch");
                     contentOffline = getTextFile(@"https://raw.githubusercontent.com/BLCM/BLCMods/master/Pre%20Sequel%20Mods/Community%20Patch/OfflineCommunityPatch");
-                } 
-            try
-            {
-                string path = InstallLocation.GetValue("InstallLocation") as string;
-                File.WriteAllLines(path + "\\Binaries\\Patch.txt", content);
-                File.WriteAllLines(path + "\\Binaries\\PatchOffline.txt", contentOffline);
-                MessageBox.Show("Done!");
-            }
-            catch (NullReferenceException)
-            {
-                MessageBox.Show("Cannot detect your game path. Choose your Binaries directory. It's usually on ...\\Steam(Library)\\steamapps\\common\\Borderlands 2(PreSequel)\\Binaries");
-                DialogResult result = new DialogResult();
-                result = folderBrowserDialog1.ShowDialog();
-                if (result == DialogResult.OK)
+                }
+
+                try
                 {
-                    string path = folderBrowserDialog1.SelectedPath;
-                    File.WriteAllLines(path + "\\Patch.txt", content);
-                    File.WriteAllLines(path + "\\PatchOffline.txt", contentOffline);
+                    File.WriteAllLines(path + "\\Binaries\\Patch.txt", content);
+                    File.WriteAllLines(path + "\\Binaries\\PatchOffline.txt", contentOffline);
                     MessageBox.Show("Done!");
                 }
-            }
+                catch (NullReferenceException)
+                {
+                    MessageBox.Show("Cannot detect your game path. Choose your Binaries directory. It's usually on ...\\Steam(Library)\\steamapps\\common\\Borderlands 2(PreSequel)\\Binaries");
+                    DialogResult result = new DialogResult();
+                    result = folderBrowserDialog1.ShowDialog();
+                    if (result == DialogResult.OK)
+                    {
+                        path = folderBrowserDialog1.SelectedPath;
+                        File.WriteAllLines(path + "\\Patch.txt", content);
+                        File.WriteAllLines(path + "\\PatchOffline.txt", contentOffline);
+                        MessageBox.Show("Done!");
+                    }
                 }
+            }
             catch (System.Net.WebException)
             {
                 MessageBox.Show("Looks like you doesn't have internet connetcion. I can't download patch for you, sorry. I will redirect you to patch location, download it manually and place it in ...\\Borderlands 2(PreSequel)\\Binaries directory.");
@@ -213,13 +233,11 @@ namespace Borderlands2Patcher
             {
                 isBorderlands2 = true;
                 button1.Text = "Patch Borderlands2.exe";
-                InstallLocation = b2il;
             }
             else
             {
                 isBorderlands2 = false;
                 button1.Text = "Patch BorderlandsPreSequel.exe";
-                InstallLocation = btpsil;
             }
         }
 
