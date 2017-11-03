@@ -15,27 +15,8 @@ namespace Borderlands2Patcher
 {
     public partial class Form1 : Form
     {
-        private static string b2il
-        {
-            get
-            {
-                using (RegistryKey key = Registry.LocalMachine.OpenSubKey(@"SOFTWARE\Microsoft\Windows\CurrentVersion\Uninstall\Steam App 49520"))
-                {
-                    return key.GetValue("InstallLocation") as string;
-                }
-            }
-        }
-
-        private static string btpsil
-        {
-            get
-            {
-                using (RegistryKey key = Registry.LocalMachine.OpenSubKey(@"SOFTWARE\Microsoft\Windows\CurrentVersion\Uninstall\Steam App 261640"))
-                {
-                    return key.GetValue("InstallLocation") as string;
-                }
-            }
-        }
+        private string b2il = String.Empty;
+        private string btpsil = String.Empty;
 
         public Form1()
         {
@@ -60,6 +41,29 @@ namespace Borderlands2Patcher
 
         bool isBorderlands2 = true;
 
+        private void Form1_Shown(object sender, EventArgs e)
+        {
+            // get install path of Borderlands 2
+            using (RegistryKey key = Registry.LocalMachine.OpenSubKey(@"SOFTWARE\Microsoft\Windows\CurrentVersion\Uninstall\Steam App 49520"))
+            {
+                if (key != null)
+                {
+                    b2il = key.GetValue("InstallLocation") as string;
+                }
+                // else key could not be found
+            }
+
+            // get install path of Borderlands The PreSequel
+            using (RegistryKey key = Registry.LocalMachine.OpenSubKey(@"SOFTWARE\Microsoft\Windows\CurrentVersion\Uninstall\Steam App 261640"))
+            {
+                if (key != null)
+                {
+                    btpsil = key.GetValue("InstallLocation") as string;
+                }
+                // else key could not be found
+            }
+        }
+
         private void button1_Click(object sender, EventArgs e)
         {
             DialogResult result = new DialogResult();
@@ -67,10 +71,20 @@ namespace Borderlands2Patcher
             {
                 if (isBorderlands2)
                 {
+                    if (String.IsNullOrEmpty(b2il))
+                    {
+                        throw new NullReferenceException();
+                    }
+
                     openFileDialog1.FileName = b2il + "\\Binaries\\Win32\\Borderlands2.exe";
                 }
                 else
                 {
+                    if (String.IsNullOrEmpty(btpsil))
+                    {
+                        throw new NullReferenceException();
+                    }
+
                     openFileDialog1.FileName = btpsil + "\\Binaries\\Win32\\BorderlandsPreSequel.exe";
                 }
                 result = DialogResult.OK;
@@ -184,6 +198,11 @@ namespace Borderlands2Patcher
 
                 try
                 {
+                    if (String.IsNullOrEmpty(path))
+                    {
+                        throw new NullReferenceException();
+                    }
+
                     File.WriteAllLines(path + "\\Binaries\\Patch.txt", content);
                     File.WriteAllLines(path + "\\Binaries\\PatchOffline.txt", contentOffline);
                     MessageBox.Show("Done!");
