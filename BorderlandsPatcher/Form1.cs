@@ -317,7 +317,7 @@ namespace BorderlandsPatcher
         private void linkLabel2_LinkClicked(object sender, LinkLabelLinkClickedEventArgs e)
         {
             linkLabel2.LinkVisited = true;
-            System.Diagnostics.Process.Start("https://github.com/BLCM/BLCMods");
+            System.Diagnostics.Process.Start("https://github.com/BLCM/ModCabinet/wiki");
         }
     }
 }
