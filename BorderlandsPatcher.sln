@@ -3,7 +3,7 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio 14
 VisualStudioVersion = 14.0.25420.1
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Borderlands2Patcher", "Borderlands2Patcher\Borderlands2Patcher.csproj", "{07669442-4B55-47C2-BBDF-B918BB5BA8E3}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "BorderlandsPatcher", "BorderlandsPatcher\BorderlandsPatcher.csproj", "{07669442-4B55-47C2-BBDF-B918BB5BA8E3}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution

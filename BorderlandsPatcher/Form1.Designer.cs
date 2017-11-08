@@ -1,4 +1,4 @@
-﻿namespace Borderlands2Patcher
+﻿namespace BorderlandsPatcher
 {
     partial class Form1
     {
