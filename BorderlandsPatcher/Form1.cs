@@ -265,19 +265,17 @@ namespace BorderlandsPatcher
 
                     path = btpsil;
 
-                    content = getTextFile(@"https://raw.githubusercontent.com/BLCM/BLCMods/master/Pre%20Sequel%20Mods/Community%20Patch/CommunityPatch");
-                    contentOffline = getTextFile(@"https://raw.githubusercontent.com/BLCM/BLCMods/master/Pre%20Sequel%20Mods/Community%20Patch/OfflineCommunityPatch");
+                    content = getTextFile(@"https://raw.githubusercontent.com/BLCM/BLCMods/master/Pre%20Sequel%20Mods/Community%20Patch/Community%20Patch%202.0/Patch");
                 }
 
                 File.WriteAllLines(path + "\\Binaries\\Patch.txt", content);
-                File.WriteAllLines(path + "\\Binaries\\PatchOffline.txt", contentOffline);
 
                 MessageBox.Show("Done!");
             }
             catch (System.Net.WebException)
             {
                 MessageBox.Show("Looks like you doesn't have internet connetcion. I can't download patch for you, sorry. I will redirect you to patch location, download it manually and place it in ...\\Borderlands 2(PreSequel)\\Binaries directory.");
-                System.Diagnostics.Process.Start("https://raw.githubusercontent.com/AnotherBugworm/Borderlands2Patcher/master/Patch/Patch.txt");
+                System.Diagnostics.Process.Start("https://github.com/BLCM/BLCMods");
             }
         }
 
