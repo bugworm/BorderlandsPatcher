@@ -265,12 +265,10 @@ namespace BorderlandsPatcher
 
                     path = btpsil;
 
-                    content = getTextFile(@"https://raw.githubusercontent.com/BLCM/BLCMods/master/Pre%20Sequel%20Mods/Community%20Patch/CommunityPatch");
-                    contentOffline = getTextFile(@"https://raw.githubusercontent.com/BLCM/BLCMods/master/Pre%20Sequel%20Mods/Community%20Patch/OfflineCommunityPatch");
+                    content = getTextFile(@"https://raw.githubusercontent.com/BLCM/BLCMods/master/Pre%20Sequel%20Mods/Community%20Patch/Community%20Patch%202.0/Patch");
                 }
 
                 File.WriteAllLines(path + "\\Binaries\\Patch.txt", content);
-                File.WriteAllLines(path + "\\Binaries\\PatchOffline.txt", contentOffline);
 
                 MessageBox.Show("Done!");
             }
