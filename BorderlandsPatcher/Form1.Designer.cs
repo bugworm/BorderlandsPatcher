@@ -29,116 +29,116 @@
         private void InitializeComponent()
         {
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(Form1));
-            this.button1 = new System.Windows.Forms.Button();
-            this.button2 = new System.Windows.Forms.Button();
-            this.textBox1 = new System.Windows.Forms.TextBox();
-            this.button3 = new System.Windows.Forms.Button();
-            this.linkLabel1 = new System.Windows.Forms.LinkLabel();
-            this.button4 = new System.Windows.Forms.Button();
+            this.BtnPatchGame = new System.Windows.Forms.Button();
+            this.BtnConsoleKey = new System.Windows.Forms.Button();
+            this.TxtConsoleKey = new System.Windows.Forms.TextBox();
+            this.BtnHelp = new System.Windows.Forms.Button();
+            this.LblCommunityPatchVideo = new System.Windows.Forms.LinkLabel();
+            this.BtnDownloadPatch = new System.Windows.Forms.Button();
             this.folderBrowserDialog1 = new System.Windows.Forms.FolderBrowserDialog();
-            this.comboBox1 = new System.Windows.Forms.ComboBox();
-            this.linkLabel2 = new System.Windows.Forms.LinkLabel();
+            this.ComboBoxGameSelection = new System.Windows.Forms.ComboBox();
+            this.LblCommunityMods = new System.Windows.Forms.LinkLabel();
             this.SuspendLayout();
             // 
-            // button1
+            // BtnPatchGame
             // 
-            this.button1.AllowDrop = true;
-            this.button1.Location = new System.Drawing.Point(57, 43);
-            this.button1.Name = "button1";
-            this.button1.Size = new System.Drawing.Size(177, 23);
-            this.button1.TabIndex = 0;
-            this.button1.Text = "Patch Borderlands2.exe";
-            this.button1.UseVisualStyleBackColor = true;
-            this.button1.Click += new System.EventHandler(this.button1_Click);
-            this.button1.DragDrop += new System.Windows.Forms.DragEventHandler(this.button1_DragDrop);
-            this.button1.DragEnter += new System.Windows.Forms.DragEventHandler(this.button1_DragEnter);
+            this.BtnPatchGame.AllowDrop = true;
+            this.BtnPatchGame.Location = new System.Drawing.Point(57, 43);
+            this.BtnPatchGame.Name = "BtnPatchGame";
+            this.BtnPatchGame.Size = new System.Drawing.Size(177, 23);
+            this.BtnPatchGame.TabIndex = 0;
+            this.BtnPatchGame.Text = "Patch Borderlands2.exe";
+            this.BtnPatchGame.UseVisualStyleBackColor = true;
+            this.BtnPatchGame.Click += new System.EventHandler(this.BtnPatchGame_Click);
+            this.BtnPatchGame.DragDrop += new System.Windows.Forms.DragEventHandler(this.BtnPatchGame_DragDrop);
+            this.BtnPatchGame.DragEnter += new System.Windows.Forms.DragEventHandler(this.BtnPatchGame_DragEnter);
             // 
-            // button2
+            // BtnConsoleKey
             // 
-            this.button2.Location = new System.Drawing.Point(57, 72);
-            this.button2.Name = "button2";
-            this.button2.Size = new System.Drawing.Size(133, 23);
-            this.button2.TabIndex = 1;
-            this.button2.Text = "Add Console Hotkey";
-            this.button2.UseVisualStyleBackColor = true;
-            this.button2.Click += new System.EventHandler(this.button2_Click);
+            this.BtnConsoleKey.Location = new System.Drawing.Point(57, 72);
+            this.BtnConsoleKey.Name = "BtnConsoleKey";
+            this.BtnConsoleKey.Size = new System.Drawing.Size(133, 23);
+            this.BtnConsoleKey.TabIndex = 1;
+            this.BtnConsoleKey.Text = "Add Console Hotkey";
+            this.BtnConsoleKey.UseVisualStyleBackColor = true;
+            this.BtnConsoleKey.Click += new System.EventHandler(this.BtnConsoleKey_Click);
             // 
-            // textBox1
+            // TxtConsoleKey
             // 
-            this.textBox1.Location = new System.Drawing.Point(196, 74);
-            this.textBox1.Name = "textBox1";
-            this.textBox1.Size = new System.Drawing.Size(37, 20);
-            this.textBox1.TabIndex = 2;
-            this.textBox1.Text = "Tilde";
+            this.TxtConsoleKey.Location = new System.Drawing.Point(196, 74);
+            this.TxtConsoleKey.Name = "TxtConsoleKey";
+            this.TxtConsoleKey.Size = new System.Drawing.Size(37, 20);
+            this.TxtConsoleKey.TabIndex = 2;
+            this.TxtConsoleKey.Text = "Tilde";
             // 
-            // button3
+            // BtnHelp
             // 
-            this.button3.Location = new System.Drawing.Point(58, 129);
-            this.button3.Name = "button3";
-            this.button3.Size = new System.Drawing.Size(176, 23);
-            this.button3.TabIndex = 3;
-            this.button3.Text = "Help";
-            this.button3.UseVisualStyleBackColor = true;
-            this.button3.Click += new System.EventHandler(this.button3_Click);
+            this.BtnHelp.Location = new System.Drawing.Point(58, 129);
+            this.BtnHelp.Name = "BtnHelp";
+            this.BtnHelp.Size = new System.Drawing.Size(176, 23);
+            this.BtnHelp.TabIndex = 3;
+            this.BtnHelp.Text = "Help";
+            this.BtnHelp.UseVisualStyleBackColor = true;
+            this.BtnHelp.Click += new System.EventHandler(this.BtnHelp_Click);
             // 
-            // linkLabel1
+            // LblCommunityPatchVideo
             // 
-            this.linkLabel1.AutoSize = true;
-            this.linkLabel1.Location = new System.Drawing.Point(13, 186);
-            this.linkLabel1.Name = "linkLabel1";
-            this.linkLabel1.Size = new System.Drawing.Size(119, 13);
-            this.linkLabel1.TabIndex = 4;
-            this.linkLabel1.TabStop = true;
-            this.linkLabel1.Text = "Community Patch Video";
-            this.linkLabel1.LinkClicked += new System.Windows.Forms.LinkLabelLinkClickedEventHandler(this.linkLabel1_LinkClicked);
+            this.LblCommunityPatchVideo.AutoSize = true;
+            this.LblCommunityPatchVideo.Location = new System.Drawing.Point(13, 186);
+            this.LblCommunityPatchVideo.Name = "LblCommunityPatchVideo";
+            this.LblCommunityPatchVideo.Size = new System.Drawing.Size(119, 13);
+            this.LblCommunityPatchVideo.TabIndex = 4;
+            this.LblCommunityPatchVideo.TabStop = true;
+            this.LblCommunityPatchVideo.Text = "Community Patch Video";
+            this.LblCommunityPatchVideo.LinkClicked += new System.Windows.Forms.LinkLabelLinkClickedEventHandler(this.LblCommunityPatchVideo_LinkClicked);
             // 
-            // button4
+            // BtnDownloadPatch
             // 
-            this.button4.Location = new System.Drawing.Point(57, 100);
-            this.button4.Name = "button4";
-            this.button4.Size = new System.Drawing.Size(177, 23);
-            this.button4.TabIndex = 6;
-            this.button4.Text = "Download Patch";
-            this.button4.UseVisualStyleBackColor = true;
-            this.button4.Click += new System.EventHandler(this.button4_Click);
+            this.BtnDownloadPatch.Location = new System.Drawing.Point(57, 100);
+            this.BtnDownloadPatch.Name = "BtnDownloadPatch";
+            this.BtnDownloadPatch.Size = new System.Drawing.Size(177, 23);
+            this.BtnDownloadPatch.TabIndex = 6;
+            this.BtnDownloadPatch.Text = "Download Patch";
+            this.BtnDownloadPatch.UseVisualStyleBackColor = true;
+            this.BtnDownloadPatch.Click += new System.EventHandler(this.BtnDownloadPatch_Click);
             // 
-            // comboBox1
+            // ComboBoxGameSelection
             // 
-            this.comboBox1.FormattingEnabled = true;
-            this.comboBox1.Items.AddRange(new object[] {
+            this.ComboBoxGameSelection.FormattingEnabled = true;
+            this.ComboBoxGameSelection.Items.AddRange(new object[] {
             "Borderlands 2",
             "Borderlands The Pre-Sequel"});
-            this.comboBox1.Location = new System.Drawing.Point(57, 12);
-            this.comboBox1.Name = "comboBox1";
-            this.comboBox1.Size = new System.Drawing.Size(177, 21);
-            this.comboBox1.TabIndex = 7;
-            this.comboBox1.Text = "Borderlands 2";
-            this.comboBox1.SelectedIndexChanged += new System.EventHandler(this.comboBox1_SelectedIndexChanged);
+            this.ComboBoxGameSelection.Location = new System.Drawing.Point(57, 12);
+            this.ComboBoxGameSelection.Name = "ComboBoxGameSelection";
+            this.ComboBoxGameSelection.Size = new System.Drawing.Size(177, 21);
+            this.ComboBoxGameSelection.TabIndex = 7;
+            this.ComboBoxGameSelection.Text = "Borderlands 2";
+            this.ComboBoxGameSelection.SelectedIndexChanged += new System.EventHandler(this.ComboBoxGameSelection_SelectedIndexChanged);
             // 
-            // linkLabel2
+            // LblCommunityMods
             // 
-            this.linkLabel2.AutoSize = true;
-            this.linkLabel2.Location = new System.Drawing.Point(185, 186);
-            this.linkLabel2.Name = "linkLabel2";
-            this.linkLabel2.Size = new System.Drawing.Size(87, 13);
-            this.linkLabel2.TabIndex = 8;
-            this.linkLabel2.TabStop = true;
-            this.linkLabel2.Text = "Community Mods";
-            this.linkLabel2.LinkClicked += new System.Windows.Forms.LinkLabelLinkClickedEventHandler(this.linkLabel2_LinkClicked);
+            this.LblCommunityMods.AutoSize = true;
+            this.LblCommunityMods.Location = new System.Drawing.Point(185, 186);
+            this.LblCommunityMods.Name = "LblCommunityMods";
+            this.LblCommunityMods.Size = new System.Drawing.Size(87, 13);
+            this.LblCommunityMods.TabIndex = 8;
+            this.LblCommunityMods.TabStop = true;
+            this.LblCommunityMods.Text = "Community Mods";
+            this.LblCommunityMods.LinkClicked += new System.Windows.Forms.LinkLabelLinkClickedEventHandler(this.LblCommunityMods_LinkClicked);
             // 
             // Form1
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(284, 208);
-            this.Controls.Add(this.linkLabel2);
-            this.Controls.Add(this.comboBox1);
-            this.Controls.Add(this.button4);
-            this.Controls.Add(this.linkLabel1);
-            this.Controls.Add(this.button3);
-            this.Controls.Add(this.textBox1);
-            this.Controls.Add(this.button2);
-            this.Controls.Add(this.button1);
+            this.Controls.Add(this.LblCommunityMods);
+            this.Controls.Add(this.ComboBoxGameSelection);
+            this.Controls.Add(this.BtnDownloadPatch);
+            this.Controls.Add(this.LblCommunityPatchVideo);
+            this.Controls.Add(this.BtnHelp);
+            this.Controls.Add(this.TxtConsoleKey);
+            this.Controls.Add(this.BtnConsoleKey);
+            this.Controls.Add(this.BtnPatchGame);
             this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.Name = "Form1";
             this.Text = "Borderlands  Patcher";
@@ -149,14 +149,14 @@
         }
 
         #endregion
-        private System.Windows.Forms.Button button1;
-        private System.Windows.Forms.Button button2;
-        private System.Windows.Forms.TextBox textBox1;
-        private System.Windows.Forms.Button button3;
-        private System.Windows.Forms.LinkLabel linkLabel1;
-        private System.Windows.Forms.Button button4;
+        private System.Windows.Forms.Button BtnPatchGame;
+        private System.Windows.Forms.Button BtnConsoleKey;
+        private System.Windows.Forms.TextBox TxtConsoleKey;
+        private System.Windows.Forms.Button BtnHelp;
+        private System.Windows.Forms.LinkLabel LblCommunityPatchVideo;
+        private System.Windows.Forms.Button BtnDownloadPatch;
         private System.Windows.Forms.FolderBrowserDialog folderBrowserDialog1;
-        private System.Windows.Forms.ComboBox comboBox1;
-        private System.Windows.Forms.LinkLabel linkLabel2;
+        private System.Windows.Forms.ComboBox ComboBoxGameSelection;
+        private System.Windows.Forms.LinkLabel LblCommunityMods;
     }
 }
