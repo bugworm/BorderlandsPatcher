@@ -88,7 +88,7 @@ namespace BorderlandsPatcher
             }
         }
 
-        private void button1_Click(object sender, EventArgs e)
+        private void BtnPatchGame_Click(object sender, EventArgs e)
         {
             string filepath;
             try
@@ -201,7 +201,7 @@ namespace BorderlandsPatcher
             return (isExeExtension && isExeMagicNumber);
         }
 
-        private void button2_Click(object sender, EventArgs e)
+        private void BtnConsoleKey_Click(object sender, EventArgs e)
         {
             string tmppath;
             if (isBorderlands2)
@@ -220,23 +220,23 @@ namespace BorderlandsPatcher
                 if (temp[i].StartsWith("ConsoleKey="))
                     break;
             }
-            temp[i] = "ConsoleKey=" + textBox1.Text;
+            temp[i] = "ConsoleKey=" + TxtConsoleKey.Text;
             File.WriteAllLines(path, temp);
             MessageBox.Show("Done!");
         }
 
-        private void button3_Click(object sender, EventArgs e)
+        private void BtnHelp_Click(object sender, EventArgs e)
         {
-            MessageBox.Show("To use Community Patch you need to patch your Borderlands2(PreSequel).exe (it will backup original file, don't worry), add console hotkey if you doesn't have one and place patch file(Patch.txt and PatchOffline.txt) to Binaries directory. Program will find your game path and download latest patch automaticly, if won't find it, you still can choose path manually. Then launch your game, open console, type \"exec Patch.txt\"(or PatchOffline.txt if you want to play offline) and press enter. Do it after game downloads all stuff(when you see actual menu). That's all, you can now enjoy patch! It will work only for current session, you need to enter console command every time you launch the game. You can press \"Arrow Up\" to show your last typed command on console.");
+            MessageBox.Show("To use Community Patch you need to patch your Borderlands2(PreSequel).exe (it will backup the original file, don't worry), add console hotkey if you don't have one and place the patch file(Patch.txt and PatchOffline.txt) in the Binaries directory. Program will find your game path and download latest patch automatically, if it won't find it, you can still choose the path manually. Then launch your game, open console, type \"exec Patch.txt\"(or PatchOffline.txt if you want to play offline) and press enter. Do it after game downloads all stuff(when you see actual menu). That's all, you can now enjoy the patch! It will work only for current session, you need to enter console command every time you launch the game. You can press \"Arrow Up\" to show your last typed command in the console.");
         }
 
-        private void linkLabel1_LinkClicked(object sender, LinkLabelLinkClickedEventArgs e)
+        private void LblCommunityPatchVideo_LinkClicked(object sender, LinkLabelLinkClickedEventArgs e)
         {
-            linkLabel1.LinkVisited = true;
+            LblCommunityPatchVideo.LinkVisited = true;
             System.Diagnostics.Process.Start("https://youtu.be/o_ee3BM1TQQ");
         }
 
-        private void button4_Click(object sender, EventArgs e)
+        private void BtnDownloadPatch_Click(object sender, EventArgs e)
         {
             string path;
             string[] content, contentOffline;
@@ -267,21 +267,21 @@ namespace BorderlandsPatcher
 
                     content = getTextFile(@"https://raw.githubusercontent.com/BLCM/BLCMods/master/Pre%20Sequel%20Mods/Community%20Patch/Community%20Patch%202.0/Patch");
                 }
-
+                
                 File.WriteAllLines(path + "\\Binaries\\Patch.txt", content);
 
                 MessageBox.Show("Done!");
             }
             catch (System.Net.WebException)
             {
-                MessageBox.Show("Looks like you doesn't have internet connetcion. I can't download patch for you, sorry. I will redirect you to patch location, download it manually and place it in ...\\Borderlands 2(PreSequel)\\Binaries directory.");
+                MessageBox.Show("Looks like you don't have an internet connection. I can't download patch for you, sorry. I will redirect you to patch location instead, download it manually and place it in ...\\Borderlands 2(PreSequel)\\Binaries directory.");
                 System.Diagnostics.Process.Start("https://github.com/BLCM/BLCMods");
             }
         }
 
         string[] files;
 
-        private void button1_DragDrop(object sender, DragEventArgs e)
+        private void BtnPatchGame_DragDrop(object sender, DragEventArgs e)
         {
             if (files.Length == 1)
             {
@@ -291,30 +291,29 @@ namespace BorderlandsPatcher
                 MessageBox.Show("Too many files dropped. Drop me Borderlands2.exe only");
         }
 
-        private void button1_DragEnter(object sender, DragEventArgs e)
+        private void BtnPatchGame_DragEnter(object sender, DragEventArgs e)
         {
             e.Effect = DragDropEffects.Link;
             files = (string[])e.Data.GetData(DataFormats.FileDrop);
-            
         }
 
-        private void comboBox1_SelectedIndexChanged(object sender, EventArgs e)
+        private void ComboBoxGameSelection_SelectedIndexChanged(object sender, EventArgs e)
         {
-            if (comboBox1.Text == "Borderlands 2")
+            if (ComboBoxGameSelection.Text == "Borderlands 2")
             {
                 isBorderlands2 = true;
-                button1.Text = "Patch Borderlands2.exe";
+                BtnPatchGame.Text = "Patch Borderlands2.exe";
             }
             else
             {
                 isBorderlands2 = false;
-                button1.Text = "Patch BorderlandsPreSequel.exe";
+                BtnPatchGame.Text = "Patch BorderlandsPreSequel.exe";
             }
         }
 
-        private void linkLabel2_LinkClicked(object sender, LinkLabelLinkClickedEventArgs e)
+        private void LblCommunityMods_LinkClicked(object sender, LinkLabelLinkClickedEventArgs e)
         {
-            linkLabel2.LinkVisited = true;
+            LblCommunityMods.LinkVisited = true;
             System.Diagnostics.Process.Start("https://github.com/BLCM/ModCabinet/wiki");
         }
     }
