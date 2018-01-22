@@ -68,24 +68,36 @@ namespace BorderlandsPatcher
         private void Form1_Shown(object sender, EventArgs e)
         {
             // get install path of Borderlands 2
-            using (RegistryKey key = Registry.LocalMachine.OpenSubKey(@"SOFTWARE\Microsoft\Windows\CurrentVersion\Uninstall\Steam App 49520"))
+            RegistryKey key = Registry.LocalMachine.OpenSubKey(@"SOFTWARE\Microsoft\Windows\CurrentVersion\Uninstall\Steam App 49520");
+            if (key != null)
             {
-                if (key != null)
+               b2il = key.GetValue("InstallLocation") as string;
+            }
+            else
+            {
+                key = RegistryKey.OpenBaseKey(RegistryHive.LocalMachine, RegistryView.Registry64).OpenSubKey("SOFTWARE\\Microsoft\\Windows\\CurrentVersion\\Uninstall\\Steam App 49520");
+                if(key != null)
                 {
                     b2il = key.GetValue("InstallLocation") as string;
                 }
-                // else key could not be found
             }
+            // else key could not be found
 
             // get install path of Borderlands The PreSequel
-            using (RegistryKey key = Registry.LocalMachine.OpenSubKey(@"SOFTWARE\Microsoft\Windows\CurrentVersion\Uninstall\Steam App 261640"))
+            key = Registry.LocalMachine.OpenSubKey(@"SOFTWARE\Microsoft\Windows\CurrentVersion\Uninstall\Steam App 261640");
+            if (key != null)
             {
-                if (key != null)
+                btpsil = key.GetValue("InstallLocation") as string;
+            }
+            else
+            {
+                key = RegistryKey.OpenBaseKey(RegistryHive.LocalMachine, RegistryView.Registry64).OpenSubKey("SOFTWARE\\Microsoft\\Windows\\CurrentVersion\\Uninstall\\Steam App 261640");
+                if(key != null)
                 {
                     btpsil = key.GetValue("InstallLocation") as string;
                 }
-                // else key could not be found
             }
+            // else key could not be found
         }
 
         private void BtnPatchGame_Click(object sender, EventArgs e)
@@ -267,16 +279,34 @@ namespace BorderlandsPatcher
 
                     content = getTextFile(@"https://raw.githubusercontent.com/BLCM/BLCMods/master/Pre%20Sequel%20Mods/Community%20Patch/Community%20Patch%202.0/Patch");
                 }
-                
-                File.WriteAllLines(path + "\\Binaries\\Patch.txt", content);
 
-                MessageBox.Show("Done!");
+                if (path != "")
+                {
+                    File.WriteAllLines(path + "\\Binaries\\Patch.txt", content);
+                    MessageBox.Show("Done!");
+                }
+                else
+                {
+                    MessageBox.Show("Cannot read path. I will redirect you to patch location, download it manually and place it in ...\\Borderlands 2(PreSequel)\\Binaries directory.");
+                    showLink();
+                }
+
             }
             catch (System.Net.WebException)
             {
                 MessageBox.Show("Looks like you don't have an internet connection. I can't download patch for you, sorry. I will redirect you to patch location instead, download it manually and place it in ...\\Borderlands 2(PreSequel)\\Binaries directory.");
-                System.Diagnostics.Process.Start("https://github.com/BLCM/BLCMods");
+                //System.Diagnostics.Process.Start("https://github.com/BLCM/BLCMods");
+                showLink();
             }
+        }
+
+        private void showLink()
+        {
+            if (isBorderlands2)
+            {
+                System.Diagnostics.Process.Start("https://github.com/BLCM/ModCabinet/wiki/Community-Patch");
+            }
+            else System.Diagnostics.Process.Start("https://github.com/BLCM/ModCabinet/wiki/Community-Patch(TPS)");
         }
 
         string[] files;
