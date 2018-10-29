@@ -264,8 +264,8 @@ namespace BorderlandsPatcher
 
                     path = b2il;
 
-                    content = getTextFile(@"https://raw.githubusercontent.com/BLCM/BLCMods/master/Borderlands%202%20mods/Shadowevil/Patch.txt");
-                    contentOffline = getTextFile(@"https://raw.githubusercontent.com/BLCM/BLCMods/master/Borderlands%202%20mods/Shadowevil/PatchOffline.txt");
+                    content = getTextFile(@"https://raw.githubusercontent.com/BLCM/BLCMods/master/Borderlands%202%20mods/Community%20Patch%20Team/Patch.txt");
+                    contentOffline = getTextFile(@"https://raw.githubusercontent.com/BLCM/BLCMods/master/Borderlands%202%20mods/Community%20Patch%20Team/PatchOffline.txt");
                 }
                 else
                 {
@@ -277,7 +277,7 @@ namespace BorderlandsPatcher
 
                     path = btpsil;
 
-                    content = getTextFile(@"https://raw.githubusercontent.com/BLCM/BLCMods/master/Pre%20Sequel%20Mods/Community%20Patch/Community%20Patch%202.0/Patch");
+                    content = getTextFile(@"https://raw.githubusercontent.com/BLCM/BLCMods/master/Pre%20Sequel%20Mods/Community%20Patch/Community%20Patch%202.2/Patch");
                 }
 
                 if (path != "")
