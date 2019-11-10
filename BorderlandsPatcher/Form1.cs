@@ -18,6 +18,7 @@ namespace BorderlandsPatcher
         private bool isBorderlands2 = true;
         private string b2il = String.Empty;
         private string btpsil = String.Empty;
+        private string filepath;
 
         public Form1()
         {
@@ -71,12 +72,12 @@ namespace BorderlandsPatcher
             RegistryKey key = Registry.LocalMachine.OpenSubKey(@"SOFTWARE\Microsoft\Windows\CurrentVersion\Uninstall\Steam App 49520");
             if (key != null)
             {
-               b2il = key.GetValue("InstallLocation") as string;
+                b2il = key.GetValue("InstallLocation") as string;
             }
             else
             {
                 key = RegistryKey.OpenBaseKey(RegistryHive.LocalMachine, RegistryView.Registry64).OpenSubKey("SOFTWARE\\Microsoft\\Windows\\CurrentVersion\\Uninstall\\Steam App 49520");
-                if(key != null)
+                if (key != null)
                 {
                     b2il = key.GetValue("InstallLocation") as string;
                 }
@@ -92,7 +93,7 @@ namespace BorderlandsPatcher
             else
             {
                 key = RegistryKey.OpenBaseKey(RegistryHive.LocalMachine, RegistryView.Registry64).OpenSubKey("SOFTWARE\\Microsoft\\Windows\\CurrentVersion\\Uninstall\\Steam App 261640");
-                if(key != null)
+                if (key != null)
                 {
                     btpsil = key.GetValue("InstallLocation") as string;
                 }
@@ -102,7 +103,7 @@ namespace BorderlandsPatcher
 
         private void BtnPatchGame_Click(object sender, EventArgs e)
         {
-            string filepath;
+            //string filepath;
             try
             {
                 if (isBorderlands2)
@@ -154,33 +155,72 @@ namespace BorderlandsPatcher
             {
                 MessageBox.Show("You already have a backup. Skipping.");
             }
-            if (isBorderlands2)
-            {
-                var stream = new FileStream(file, FileMode.Open, FileAccess.ReadWrite);
-                stream.Position = 0x004F2590;
-                stream.WriteByte(0xff);
-                for (long i = 0x01B94B0C; i <= 0x01B94B10; i++)
-                {
-                    stream.Position = i;
-                    stream.WriteByte(0x00);
-                }
-                stream.Close();
-                MessageBox.Show("Done!");
-            }
-            else
-            {
-                var stream = new FileStream(file, FileMode.Open, FileAccess.ReadWrite);
-                stream.Position = 0x00D8BD1F;
-                stream.WriteByte(0xff);
-                for (long i = 0x01982A00; i <= 0x01982A05; i++)
-                {
-                    stream.Position = i;
-                    stream.WriteByte(0x00);
-                }
-                stream.Close();
-                MessageBox.Show("Done!");
-            }
+            MessageBox.Show("This would take couple minutes. Please be patient...");
+
+            backgroundWorker1.RunWorkerAsync();
+            progressBar1.Value = 0;
         }
+
+        private void backgroundWorker1_DoWork(object sender, DoWorkEventArgs e)
+        {
+            //progressBar1.Value = 20;
+            backgroundWorker1.ReportProgress(15);
+            byte[] dataArraySay = new byte[32] { 0x61, 0x00, 0x77, 0x00, 0x20, 0x00, 0x5B, 0x00, 0x47, 0x00, 0x54, 0x00, 0x5D, 0x00, 0x00, 0x00, 0x73, 0x00, 0x61, 0x00, 0x79, 0x00, 0x20, 0x00, 0x00, 0x00, 0x00, 0x00, 0x6D, 0x73, 0x67, 0x20 };
+            byte[] dataArraySayChanged = new byte[32] { 0x61, 0x00, 0x77, 0x00, 0x20, 0x00, 0x5B, 0x00, 0x47, 0x00, 0x54, 0x00, 0x5D, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x20, 0x00, 0x00, 0x00, 0x00, 0x00, 0x6D, 0x73, 0x67, 0x20 };
+            byte[] dataArraySet = new byte[8] { 0x83, 0xC4, 0x0C, 0x85, 0xC0, 0x75, 0x1A, 0x6A };
+            byte[] dataArraySetChanged = new byte[8] { 0x83, 0xC4, 0x0C, 0x85, 0xFF, 0x75, 0x1A, 0x6A };
+            long positions = 0;
+            long positions2 = 0;
+
+            positions = FindBytes(filepath, dataArraySay);
+            if (positions == 0)
+            {
+                MessageBox.Show("Looks like binary file is already patched or it's a bug. Check if it's working", "Warning", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                backgroundWorker1.ReportProgress(100);
+                backgroundWorker1.CancelAsync();
+            }
+            backgroundWorker1.ReportProgress(55);
+            positions2 = FindBytes(filepath, dataArraySet);
+            backgroundWorker1.ReportProgress(95);
+
+            if (positions2 == 0)
+            {
+                MessageBox.Show("Looks like binary file is already patched or it's a bug. Check if it's working", "Warning", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                backgroundWorker1.ReportProgress(100);
+                backgroundWorker1.CancelAsync();
+            }
+            var stream = new FileStream(filepath, FileMode.Open, FileAccess.ReadWrite);
+            stream.Position = positions;
+            stream.Write(dataArraySayChanged, 0, 32);
+            stream.Position = positions2;
+            stream.Write(dataArraySetChanged, 0, 8);
+            stream.Close();
+            backgroundWorker1.ReportProgress(100);
+            MessageBox.Show("Done!");
+        }
+
+        private long FindBytes(string fileName, byte[] bytes)
+        {
+            long i;
+            int j, k = 0;
+            using (FileStream fs = File.OpenRead(fileName))
+            {
+                for (i = 0; i < fs.Length - bytes.Length; i++)
+                {
+                    fs.Seek(i, SeekOrigin.Begin);
+                    for (j = 0; j < bytes.Length; j++)
+                    {
+                        if (fs.ReadByte() != bytes[j])
+                            break;
+                    }
+                    if (j == bytes.Length)
+                        return i;
+                }
+                fs.Close();
+            }
+            return 0;
+        }
+
 
         private bool VerifyExe(string file)
         {
@@ -345,6 +385,11 @@ namespace BorderlandsPatcher
         {
             LblCommunityMods.LinkVisited = true;
             System.Diagnostics.Process.Start("https://github.com/BLCM/ModCabinet/wiki");
+        }
+
+        private void backgroundWorker1_ProgressChanged(object sender, ProgressChangedEventArgs e)
+        {
+            progressBar1.Value = e.ProgressPercentage;
         }
     }
 }

@@ -38,6 +38,8 @@
             this.folderBrowserDialog1 = new System.Windows.Forms.FolderBrowserDialog();
             this.ComboBoxGameSelection = new System.Windows.Forms.ComboBox();
             this.LblCommunityMods = new System.Windows.Forms.LinkLabel();
+            this.progressBar1 = new System.Windows.Forms.ProgressBar();
+            this.backgroundWorker1 = new System.ComponentModel.BackgroundWorker();
             this.SuspendLayout();
             // 
             // BtnPatchGame
@@ -126,11 +128,27 @@
             this.LblCommunityMods.Text = "Community Mods";
             this.LblCommunityMods.LinkClicked += new System.Windows.Forms.LinkLabelLinkClickedEventHandler(this.LblCommunityMods_LinkClicked);
             // 
+            // progressBar1
+            // 
+            this.progressBar1.Location = new System.Drawing.Point(58, 160);
+            this.progressBar1.Name = "progressBar1";
+            this.progressBar1.Size = new System.Drawing.Size(176, 23);
+            this.progressBar1.Step = 33;
+            this.progressBar1.TabIndex = 9;
+            // 
+            // backgroundWorker1
+            // 
+            this.backgroundWorker1.WorkerReportsProgress = true;
+            this.backgroundWorker1.WorkerSupportsCancellation = true;
+            this.backgroundWorker1.DoWork += new System.ComponentModel.DoWorkEventHandler(this.backgroundWorker1_DoWork);
+            this.backgroundWorker1.ProgressChanged += new System.ComponentModel.ProgressChangedEventHandler(this.backgroundWorker1_ProgressChanged);
+            // 
             // Form1
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(284, 208);
+            this.Controls.Add(this.progressBar1);
             this.Controls.Add(this.LblCommunityMods);
             this.Controls.Add(this.ComboBoxGameSelection);
             this.Controls.Add(this.BtnDownloadPatch);
@@ -158,5 +176,7 @@
         private System.Windows.Forms.FolderBrowserDialog folderBrowserDialog1;
         private System.Windows.Forms.ComboBox ComboBoxGameSelection;
         private System.Windows.Forms.LinkLabel LblCommunityMods;
+        private System.Windows.Forms.ProgressBar progressBar1;
+        private System.ComponentModel.BackgroundWorker backgroundWorker1;
     }
 }
