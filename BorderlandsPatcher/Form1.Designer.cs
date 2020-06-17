@@ -40,12 +40,23 @@
             this.LblCommunityMods = new System.Windows.Forms.LinkLabel();
             this.progressBar1 = new System.Windows.Forms.ProgressBar();
             this.backgroundWorker1 = new System.ComponentModel.BackgroundWorker();
+            this.lblNMBL2 = new System.Windows.Forms.LinkLabel();
+            this.label1 = new System.Windows.Forms.Label();
+            this.pathGame = new System.Windows.Forms.TextBox();
+            this.label2 = new System.Windows.Forms.Label();
+            this.label3 = new System.Windows.Forms.Label();
+            this.pathExe = new System.Windows.Forms.TextBox();
+            this.buttonPathDetect = new System.Windows.Forms.Button();
+            this.pathGameEdit = new System.Windows.Forms.Button();
+            this.pathExeEdit = new System.Windows.Forms.Button();
+            this.lblGithub = new System.Windows.Forms.LinkLabel();
+            this.openFileDialog1 = new System.Windows.Forms.OpenFileDialog();
             this.SuspendLayout();
             // 
             // BtnPatchGame
             // 
             this.BtnPatchGame.AllowDrop = true;
-            this.BtnPatchGame.Location = new System.Drawing.Point(57, 43);
+            this.BtnPatchGame.Location = new System.Drawing.Point(54, 146);
             this.BtnPatchGame.Name = "BtnPatchGame";
             this.BtnPatchGame.Size = new System.Drawing.Size(177, 23);
             this.BtnPatchGame.TabIndex = 0;
@@ -57,7 +68,7 @@
             // 
             // BtnConsoleKey
             // 
-            this.BtnConsoleKey.Location = new System.Drawing.Point(57, 72);
+            this.BtnConsoleKey.Location = new System.Drawing.Point(54, 175);
             this.BtnConsoleKey.Name = "BtnConsoleKey";
             this.BtnConsoleKey.Size = new System.Drawing.Size(133, 23);
             this.BtnConsoleKey.TabIndex = 1;
@@ -67,7 +78,7 @@
             // 
             // TxtConsoleKey
             // 
-            this.TxtConsoleKey.Location = new System.Drawing.Point(196, 74);
+            this.TxtConsoleKey.Location = new System.Drawing.Point(193, 177);
             this.TxtConsoleKey.Name = "TxtConsoleKey";
             this.TxtConsoleKey.Size = new System.Drawing.Size(37, 20);
             this.TxtConsoleKey.TabIndex = 2;
@@ -75,7 +86,7 @@
             // 
             // BtnHelp
             // 
-            this.BtnHelp.Location = new System.Drawing.Point(58, 129);
+            this.BtnHelp.Location = new System.Drawing.Point(55, 233);
             this.BtnHelp.Name = "BtnHelp";
             this.BtnHelp.Size = new System.Drawing.Size(176, 23);
             this.BtnHelp.TabIndex = 3;
@@ -86,7 +97,7 @@
             // LblCommunityPatchVideo
             // 
             this.LblCommunityPatchVideo.AutoSize = true;
-            this.LblCommunityPatchVideo.Location = new System.Drawing.Point(13, 186);
+            this.LblCommunityPatchVideo.Location = new System.Drawing.Point(12, 363);
             this.LblCommunityPatchVideo.Name = "LblCommunityPatchVideo";
             this.LblCommunityPatchVideo.Size = new System.Drawing.Size(119, 13);
             this.LblCommunityPatchVideo.TabIndex = 4;
@@ -96,7 +107,7 @@
             // 
             // BtnDownloadPatch
             // 
-            this.BtnDownloadPatch.Location = new System.Drawing.Point(57, 100);
+            this.BtnDownloadPatch.Location = new System.Drawing.Point(54, 204);
             this.BtnDownloadPatch.Name = "BtnDownloadPatch";
             this.BtnDownloadPatch.Size = new System.Drawing.Size(177, 23);
             this.BtnDownloadPatch.TabIndex = 6;
@@ -110,9 +121,9 @@
             this.ComboBoxGameSelection.Items.AddRange(new object[] {
             "Borderlands 2",
             "Borderlands The Pre-Sequel"});
-            this.ComboBoxGameSelection.Location = new System.Drawing.Point(57, 12);
+            this.ComboBoxGameSelection.Location = new System.Drawing.Point(94, 12);
             this.ComboBoxGameSelection.Name = "ComboBoxGameSelection";
-            this.ComboBoxGameSelection.Size = new System.Drawing.Size(177, 21);
+            this.ComboBoxGameSelection.Size = new System.Drawing.Size(140, 21);
             this.ComboBoxGameSelection.TabIndex = 7;
             this.ComboBoxGameSelection.Text = "Borderlands 2";
             this.ComboBoxGameSelection.SelectedIndexChanged += new System.EventHandler(this.ComboBoxGameSelection_SelectedIndexChanged);
@@ -120,17 +131,17 @@
             // LblCommunityMods
             // 
             this.LblCommunityMods.AutoSize = true;
-            this.LblCommunityMods.Location = new System.Drawing.Point(185, 186);
+            this.LblCommunityMods.Location = new System.Drawing.Point(190, 337);
             this.LblCommunityMods.Name = "LblCommunityMods";
-            this.LblCommunityMods.Size = new System.Drawing.Size(87, 13);
+            this.LblCommunityMods.Size = new System.Drawing.Size(64, 13);
             this.LblCommunityMods.TabIndex = 8;
             this.LblCommunityMods.TabStop = true;
-            this.LblCommunityMods.Text = "Community Mods";
+            this.LblCommunityMods.Text = "ModCabinet";
             this.LblCommunityMods.LinkClicked += new System.Windows.Forms.LinkLabelLinkClickedEventHandler(this.LblCommunityMods_LinkClicked);
             // 
             // progressBar1
             // 
-            this.progressBar1.Location = new System.Drawing.Point(58, 160);
+            this.progressBar1.Location = new System.Drawing.Point(56, 262);
             this.progressBar1.Name = "progressBar1";
             this.progressBar1.Size = new System.Drawing.Size(176, 23);
             this.progressBar1.Step = 33;
@@ -143,11 +154,120 @@
             this.backgroundWorker1.DoWork += new System.ComponentModel.DoWorkEventHandler(this.backgroundWorker1_DoWork);
             this.backgroundWorker1.ProgressChanged += new System.ComponentModel.ProgressChangedEventHandler(this.backgroundWorker1_ProgressChanged);
             // 
+            // lblNMBL2
+            // 
+            this.lblNMBL2.AutoSize = true;
+            this.lblNMBL2.Location = new System.Drawing.Point(190, 363);
+            this.lblNMBL2.Name = "lblNMBL2";
+            this.lblNMBL2.Size = new System.Drawing.Size(88, 13);
+            this.lblNMBL2.TabIndex = 10;
+            this.lblNMBL2.TabStop = true;
+            this.lblNMBL2.Text = "NexusMods(BL2)";
+            this.lblNMBL2.LinkClicked += new System.Windows.Forms.LinkLabelLinkClickedEventHandler(this.lblNMBL2_LinkClicked);
+            // 
+            // label1
+            // 
+            this.label1.AutoSize = true;
+            this.label1.Location = new System.Drawing.Point(190, 324);
+            this.label1.Name = "label1";
+            this.label1.Size = new System.Drawing.Size(75, 13);
+            this.label1.TabIndex = 11;
+            this.label1.Text = "Links to mods:";
+            // 
+            // pathGame
+            // 
+            this.pathGame.Location = new System.Drawing.Point(15, 56);
+            this.pathGame.Name = "pathGame";
+            this.pathGame.Size = new System.Drawing.Size(217, 20);
+            this.pathGame.TabIndex = 12;
+            // 
+            // label2
+            // 
+            this.label2.AutoSize = true;
+            this.label2.Location = new System.Drawing.Point(14, 40);
+            this.label2.Name = "label2";
+            this.label2.Size = new System.Drawing.Size(73, 13);
+            this.label2.TabIndex = 13;
+            this.label2.Text = "Path to game:";
+            // 
+            // label3
+            // 
+            this.label3.AutoSize = true;
+            this.label3.Location = new System.Drawing.Point(14, 84);
+            this.label3.Name = "label3";
+            this.label3.Size = new System.Drawing.Size(67, 13);
+            this.label3.TabIndex = 14;
+            this.label3.Text = "Path to .exe:";
+            // 
+            // pathExe
+            // 
+            this.pathExe.Location = new System.Drawing.Point(15, 100);
+            this.pathExe.Name = "pathExe";
+            this.pathExe.Size = new System.Drawing.Size(217, 20);
+            this.pathExe.TabIndex = 15;
+            // 
+            // buttonPathDetect
+            // 
+            this.buttonPathDetect.Location = new System.Drawing.Point(12, 10);
+            this.buttonPathDetect.Name = "buttonPathDetect";
+            this.buttonPathDetect.Size = new System.Drawing.Size(75, 23);
+            this.buttonPathDetect.TabIndex = 16;
+            this.buttonPathDetect.Text = "Detect Path";
+            this.buttonPathDetect.UseVisualStyleBackColor = true;
+            this.buttonPathDetect.Click += new System.EventHandler(this.buttonPathDetect_Click);
+            // 
+            // pathGameEdit
+            // 
+            this.pathGameEdit.BackgroundImage = global::BorderlandsPatcher.Properties.Resources._84380;
+            this.pathGameEdit.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
+            this.pathGameEdit.Location = new System.Drawing.Point(239, 56);
+            this.pathGameEdit.Name = "pathGameEdit";
+            this.pathGameEdit.Size = new System.Drawing.Size(19, 20);
+            this.pathGameEdit.TabIndex = 17;
+            this.pathGameEdit.UseVisualStyleBackColor = true;
+            this.pathGameEdit.Click += new System.EventHandler(this.pathGameEdit_Click);
+            // 
+            // pathExeEdit
+            // 
+            this.pathExeEdit.BackgroundImage = global::BorderlandsPatcher.Properties.Resources._84380;
+            this.pathExeEdit.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
+            this.pathExeEdit.Location = new System.Drawing.Point(239, 100);
+            this.pathExeEdit.Name = "pathExeEdit";
+            this.pathExeEdit.Size = new System.Drawing.Size(19, 20);
+            this.pathExeEdit.TabIndex = 18;
+            this.pathExeEdit.UseVisualStyleBackColor = true;
+            this.pathExeEdit.Click += new System.EventHandler(this.pathExeEdit_Click);
+            // 
+            // lblGithub
+            // 
+            this.lblGithub.AutoSize = true;
+            this.lblGithub.Location = new System.Drawing.Point(190, 350);
+            this.lblGithub.Name = "lblGithub";
+            this.lblGithub.Size = new System.Drawing.Size(38, 13);
+            this.lblGithub.TabIndex = 20;
+            this.lblGithub.TabStop = true;
+            this.lblGithub.Text = "Github";
+            this.lblGithub.LinkClicked += new System.Windows.Forms.LinkLabelLinkClickedEventHandler(this.lblGithub_LinkClicked);
+            // 
+            // openFileDialog1
+            // 
+            this.openFileDialog1.FileName = "openFileDialog1";
+            // 
             // Form1
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(284, 208);
+            this.ClientSize = new System.Drawing.Size(284, 385);
+            this.Controls.Add(this.lblGithub);
+            this.Controls.Add(this.pathExeEdit);
+            this.Controls.Add(this.pathGameEdit);
+            this.Controls.Add(this.buttonPathDetect);
+            this.Controls.Add(this.pathExe);
+            this.Controls.Add(this.label3);
+            this.Controls.Add(this.label2);
+            this.Controls.Add(this.pathGame);
+            this.Controls.Add(this.label1);
+            this.Controls.Add(this.lblNMBL2);
             this.Controls.Add(this.progressBar1);
             this.Controls.Add(this.LblCommunityMods);
             this.Controls.Add(this.ComboBoxGameSelection);
@@ -178,5 +298,16 @@
         private System.Windows.Forms.LinkLabel LblCommunityMods;
         private System.Windows.Forms.ProgressBar progressBar1;
         private System.ComponentModel.BackgroundWorker backgroundWorker1;
+        private System.Windows.Forms.LinkLabel lblNMBL2;
+        private System.Windows.Forms.Label label1;
+        private System.Windows.Forms.TextBox pathGame;
+        private System.Windows.Forms.Label label2;
+        private System.Windows.Forms.Label label3;
+        private System.Windows.Forms.TextBox pathExe;
+        private System.Windows.Forms.Button buttonPathDetect;
+        private System.Windows.Forms.Button pathGameEdit;
+        private System.Windows.Forms.Button pathExeEdit;
+        private System.Windows.Forms.LinkLabel lblGithub;
+        private System.Windows.Forms.OpenFileDialog openFileDialog1;
     }
 }

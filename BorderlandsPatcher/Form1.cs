@@ -50,6 +50,23 @@ namespace BorderlandsPatcher
             return String.Empty;
         }
 
+        public static string AskForExeLocation(OpenFileDialog openFileDialog, string blil)
+        {
+            if (!String.IsNullOrEmpty(blil))
+                openFileDialog.InitialDirectory = blil;
+
+            openFileDialog.Title = "Select .exe file you want to patch";
+
+            DialogResult result = openFileDialog.ShowDialog();
+
+            if (result == DialogResult.OK)
+            {
+                return openFileDialog.FileName;
+            }
+
+            return String.Empty;
+        }
+
         public byte[] GetFileViaHttp(string url)
         {
             using (WebClient client = new WebClient())
@@ -68,6 +85,32 @@ namespace BorderlandsPatcher
 
         private void Form1_Shown(object sender, EventArgs e)
         {
+            FindBL2Steam();
+            FindTPSSteam();
+            ChechGame();
+        }
+
+        private void FindTPSSteam()
+        {
+            // get install path of Borderlands The PreSequel
+            RegistryKey key = Registry.LocalMachine.OpenSubKey(@"SOFTWARE\Microsoft\Windows\CurrentVersion\Uninstall\Steam App 261640");
+            if (key != null)
+            {
+                btpsil = key.GetValue("InstallLocation") as string;
+            }
+            else
+            {
+                key = RegistryKey.OpenBaseKey(RegistryHive.LocalMachine, RegistryView.Registry64).OpenSubKey("SOFTWARE\\Microsoft\\Windows\\CurrentVersion\\Uninstall\\Steam App 261640");
+                if (key != null)
+                {
+                    btpsil = key.GetValue("InstallLocation") as string;
+                }
+            }
+            // else key could not be found
+        }
+
+        private void FindBL2Steam()
+        {
             // get install path of Borderlands 2
             RegistryKey key = Registry.LocalMachine.OpenSubKey(@"SOFTWARE\Microsoft\Windows\CurrentVersion\Uninstall\Steam App 49520");
             if (key != null)
@@ -80,22 +123,6 @@ namespace BorderlandsPatcher
                 if (key != null)
                 {
                     b2il = key.GetValue("InstallLocation") as string;
-                }
-            }
-            // else key could not be found
-
-            // get install path of Borderlands The PreSequel
-            key = Registry.LocalMachine.OpenSubKey(@"SOFTWARE\Microsoft\Windows\CurrentVersion\Uninstall\Steam App 261640");
-            if (key != null)
-            {
-                btpsil = key.GetValue("InstallLocation") as string;
-            }
-            else
-            {
-                key = RegistryKey.OpenBaseKey(RegistryHive.LocalMachine, RegistryView.Registry64).OpenSubKey("SOFTWARE\\Microsoft\\Windows\\CurrentVersion\\Uninstall\\Steam App 261640");
-                if (key != null)
-                {
-                    btpsil = key.GetValue("InstallLocation") as string;
                 }
             }
             // else key could not be found
@@ -113,8 +140,6 @@ namespace BorderlandsPatcher
                     {
                         b2il = AskForInstallLocation(folderBrowserDialog1, isBorderlands2);
                     }
-
-                    filepath = b2il + "\\Binaries\\Win32\\Borderlands2.exe";
                 }
                 else
                 {
@@ -123,9 +148,9 @@ namespace BorderlandsPatcher
                     {
                         btpsil = AskForInstallLocation(folderBrowserDialog1, isBorderlands2);
                     }
-
-                    filepath = btpsil + "\\Binaries\\Win32\\BorderlandsPreSequel.exe";
                 }
+
+                filepath = pathExe.Text;
 
                 if (VerifyExe(filepath))
                 {
@@ -274,6 +299,7 @@ namespace BorderlandsPatcher
             }
             temp[i] = "ConsoleKey=" + TxtConsoleKey.Text;
             File.WriteAllLines(path, temp);
+            //TODO: Check if it worked and write correct message
             MessageBox.Show("Done!");
         }
 
@@ -328,7 +354,7 @@ namespace BorderlandsPatcher
                 else
                 {
                     MessageBox.Show("Cannot read path. I will redirect you to patch location, download it manually and place it in ...\\Borderlands 2(PreSequel)\\Binaries directory.");
-                    showLink();
+                    ShowLink();
                 }
 
             }
@@ -336,11 +362,11 @@ namespace BorderlandsPatcher
             {
                 MessageBox.Show("Looks like you don't have an internet connection. I can't download patch for you, sorry. I will redirect you to patch location instead, download it manually and place it in ...\\Borderlands 2(PreSequel)\\Binaries directory.");
                 //System.Diagnostics.Process.Start("https://github.com/BLCM/BLCMods");
-                showLink();
+                ShowLink();
             }
         }
 
-        private void showLink()
+        private void ShowLink()
         {
             if (isBorderlands2)
             {
@@ -369,15 +395,30 @@ namespace BorderlandsPatcher
 
         private void ComboBoxGameSelection_SelectedIndexChanged(object sender, EventArgs e)
         {
+            ChechGame();
+        }
+
+        private void ChechGame()
+        {
             if (ComboBoxGameSelection.Text == "Borderlands 2")
             {
                 isBorderlands2 = true;
                 BtnPatchGame.Text = "Patch Borderlands2.exe";
+                pathGame.Text = b2il;
+                if (!String.IsNullOrEmpty(pathGame.Text))
+                    pathExe.Text = b2il + "\\Binaries\\Win32\\Borderlands2.exe";
+                else
+                    pathExe.Text = String.Empty;
             }
             else
             {
                 isBorderlands2 = false;
                 BtnPatchGame.Text = "Patch BorderlandsPreSequel.exe";
+                pathGame.Text = btpsil;
+                if (!String.IsNullOrEmpty(pathGame.Text))
+                    pathExe.Text = btpsil + "\\Binaries\\Win32\\BorderlandsPreSequel.exe";
+                else
+                    pathExe.Text = String.Empty;
             }
         }
 
@@ -390,6 +431,47 @@ namespace BorderlandsPatcher
         private void backgroundWorker1_ProgressChanged(object sender, ProgressChangedEventArgs e)
         {
             progressBar1.Value = e.ProgressPercentage;
+        }
+
+        private void pathGameEdit_Click(object sender, EventArgs e)
+        {
+            //TODO
+            string path = AskForInstallLocation(folderBrowserDialog1, isBorderlands2);
+            if (isBorderlands2)
+                b2il = path;
+            else
+                btpsil = path;
+            ChechGame();
+        }
+
+        private void lblGithub_LinkClicked(object sender, LinkLabelLinkClickedEventArgs e)
+        {
+            lblGithub.LinkVisited = true;
+            System.Diagnostics.Process.Start("https://github.com/BLCM/BLCMods");
+        }
+
+        private void lblNMBL2_LinkClicked(object sender, LinkLabelLinkClickedEventArgs e)
+        {
+            lblNMBL2.LinkVisited = true;
+            System.Diagnostics.Process.Start("https://www.nexusmods.com/borderlands2");
+        }
+
+        private void buttonPathDetect_Click(object sender, EventArgs e)
+        {
+            FindBL2Steam();
+            FindTPSSteam();
+            ChechGame();
+        }
+
+        private void pathExeEdit_Click(object sender, EventArgs e)
+        {
+            string path = String.Empty;
+            if (isBorderlands2)
+                path = AskForExeLocation(openFileDialog1, b2il);
+            else
+                path = AskForExeLocation(openFileDialog1, btpsil);
+            if (!String.IsNullOrEmpty(path))
+                pathExe.Text = path;
         }
     }
 }
