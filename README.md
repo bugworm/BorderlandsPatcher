@@ -1,3 +1,5 @@
+# Disclaimer
+I recommend using [PythonSDK](https://bl-sdk.github.io/#sdk-installation) instead. It's easier way to patch the game and it has more mods. Also this program is not being added to any database so it can be considered a virus.
 # BorderlandsPatcher
 Patcher for borderlands2.exe and borderlandspresequel.exe for ability to use community patch. More info about patch: https://youtu.be/o_ee3BM1TQQ 
 
